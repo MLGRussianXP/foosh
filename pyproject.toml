@@ -1,0 +1,23 @@
+[tool.black]
+line-length = 79
+target-version = ['py311']
+include = '\.pyi?$'
+
+[tool.flake8]
+inline-quotes = 'double'
+literal-inline-quotes = 'double'
+import-order-style = 'google'
+application-import-names = []
+ignore = [
+    'W503',
+]
+exclude = [
+    '*/migrations/',
+    'venv/',
+    'env/',
+]
+per-file-ignores = [
+    '*/settings.py:E501',
+]
+max-complexity = 10
+suppress-none-returning = true
