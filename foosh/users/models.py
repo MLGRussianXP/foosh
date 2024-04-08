@@ -41,7 +41,7 @@ class School(models.Model):
     name = models.CharField(
         "название",
         max_length=255,
-        required=True,
+        blank=False,
     )
 
 
@@ -55,13 +55,13 @@ class Student(models.Model):
     name = models.CharField(
         "имя",
         max_length=100,
-        required=True,
+        blank=False,
     )
 
     surname = models.CharField(
         "фамилия",
         max_length=100,
-        required=True,
+        blank=False,
     )
 
     patronymic = models.CharField(
