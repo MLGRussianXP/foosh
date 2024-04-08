@@ -44,6 +44,12 @@ class School(models.Model):
         blank=False,
     )
 
+    city = models.CharField(
+        "город",
+        max_length=255,
+        blank=False,
+    )
+
 
 class Student(models.Model):
     user = models.OneToOneField(
