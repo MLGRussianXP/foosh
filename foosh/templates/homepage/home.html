@@ -1,6 +1,43 @@
-<div>
-    <p>Главная</p>
-    {% if user.is_authenticated %}
-        <p>Вы авторизованы</p>
-    {% endif %}
-</div>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main class="main">
+    <section class="main-content">
+        <div class="main-info">
+            <h1 class="main-title">Покупайте еду как<br><span class="bg-main-title">Вам удобно!</span></h1>
+            <p class="main-text">Cервис онлайн-заказа еды в вашем учебном заведении</p>
+            <div class="main-btns">
+                <button class="btn btn-catalog">Перейти в каталог</button>
+                <button class="btn btn-about-us">Подробнее о нас ►</button>
+            </div>
+        </div>
+        <img src="{% static 'imgs/homepage/main-image.png' %}" alt="" class="main-img">
+    </section>
+    <section class="why-us">
+        <h1 class="why-us-title">Почему именно <span class="bg-main-title">мы?</span></h1>
+        <div class="why-us-items">
+            <div class="why-us-card">
+                <img src="{% static 'imgs/homepage/card-index_1.png' %}" alt="card" class="why-us-card-icon">
+                <div class="line"></div>
+                <p class="why-us-card-text">Помогаем уменьшить очереди в буфет</p>
+            </div>
+            <div class="why-us-card">
+                <img src="{% static 'imgs/homepage//card-index_2.png' %}" alt="card" class="why-us-card-icon">
+                <div class="line"></div>
+                <p class="why-us-card-text">Доступна онлайн-оплата заказа</p>
+            </div>
+            <div class="why-us-card">
+                <img src="{% static 'imgs/homepage/card-index_3.png' %}" alt="card" class="why-us-card-icon">
+                <div class="line"></div>
+                <p class="why-us-card-text">Возможность предзаказа продукта</p>
+            </div>
+            <div class="why-us-card">
+                <img src="{% static 'imgs/homepage/card-index_4.png' %}" alt="card" class="why-us-card-icon">
+                <div class="line"></div>
+                <p class="why-us-card-text">Может подключиться любое учебное заведение</p>
+            </div>
+        </div>
+        <button class="btn btn-make-order">Сделать заказ</button>
+    </section>
+</main>
+{% endblock content %}

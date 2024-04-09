@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image" href="{% static '/imgs/favicons/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static '/imgs/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/imgs/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/imgs/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static '/imgs/icons/site.webmanifest' %}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {% include "includes/header.html" %}
+    <main>
+        {% block content %}No content{% endblock %}
+    </main>
+    {% include "includes/footer.html" %}
+</body>
+</html>
