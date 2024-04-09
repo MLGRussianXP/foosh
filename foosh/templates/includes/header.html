@@ -13,8 +13,6 @@
                 <li>Контакты</li>
             </a>
             {% if user.is_authenticated %}
-                <button class="btn-sign-in">Войти</button>
-            {% else %}
                 <div class="auth-user-header">
                     <a href="#">
                         <img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
@@ -29,6 +27,8 @@
                         </a>
                     </div>
                 </div>
+            {% else %}
+                <button class="btn-sign-in">Войти</button>
             {% endif %}
         </ul>
     </div>
