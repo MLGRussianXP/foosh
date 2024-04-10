@@ -1,5 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.forms.widgets import PasswordInput, TextInput
 
 from users.models import CustomUser, School, Student
 
@@ -7,7 +8,25 @@ from users.models import CustomUser, School, Student
 __all__ = []
 
 
-class StudentSignUpForm(UserCreationForm):
+class StylesFormMixin(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs["class"] = "input"
+
+
+class CustomAuthForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=TextInput(attrs={"placeholder": "Почта"}),
+    )
+    password = forms.CharField(
+        widget=PasswordInput(
+            attrs={"placeholder": "Пароль"},
+        ),
+    )
+
+
+class StudentSignUpForm(StylesFormMixin, UserCreationForm):
     name = forms.CharField(
         max_length=100,
         label="Имя",
@@ -55,7 +74,7 @@ class StudentSignUpForm(UserCreationForm):
         return user
 
 
-class SchoolSignUpForm(UserCreationForm):
+class SchoolSignUpForm(StylesFormMixin, UserCreationForm):
     name = forms.CharField(
         max_length=255,
         label="Название",

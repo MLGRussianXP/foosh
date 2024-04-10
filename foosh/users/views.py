@@ -10,13 +10,13 @@ __all__ = []
 
 
 class SignUpView(TemplateView):
-    template_name = "registration/signup.html"
+    template_name = "users/signup.html"
 
 
 class StudentSignUpView(CreateView):
     model = CustomUser
     form_class = StudentSignUpForm
-    template_name = "registration/student_signup.html"
+    template_name = "users/student_signup.html"
 
     def get_context_data(self, **kwargs):
         kwargs["user_type"] = "student"
@@ -31,7 +31,7 @@ class StudentSignUpView(CreateView):
 class SchoolSignUpView(CreateView):
     model = CustomUser
     form_class = SchoolSignUpForm
-    template_name = "registration/school_signup.html"
+    template_name = "users/school_signup.html"
 
     def get_context_data(self, **kwargs):
         kwargs["user_type"] = "school"

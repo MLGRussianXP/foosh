@@ -1,23 +1,33 @@
+from django.contrib.auth import views
 from django.urls import path
 
-from users import views
+import users.forms
+import users.views
 
 app_name = "users"
 
 urlpatterns = [
     path(
+        "login/",
+        views.LoginView.as_view(
+            template_name="users/login.html",
+            authentication_form=users.forms.CustomAuthForm,
+        ),
+        name="login",
+    ),
+    path(
         "signup/",
-        views.SignUpView.as_view(),
+        users.views.SignUpView.as_view(),
         name="signup",
     ),
     path(
         "signup/student/",
-        views.StudentSignUpView.as_view(),
+        users.views.StudentSignUpView.as_view(),
         name="student_signup",
     ),
     path(
         "signup/school/",
-        views.SchoolSignUpView.as_view(),
+        users.views.SchoolSignUpView.as_view(),
         name="school_signup",
     ),
 ]
