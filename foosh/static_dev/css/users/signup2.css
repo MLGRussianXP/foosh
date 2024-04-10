@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Bellota Text", sans-serif;
+}
+
+body {
+    background-image: url("bg_login.svg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.bg-form {
+    width: 820px;
+    height: 700px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo {
+    width: 76px;
+    height: 29px;
+    margin-top: 19px;
+}
+
+.title {
+    font-size: 27px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.form {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 19px;
+}
+
+.input {
+    width: 471px;
+    height: 38px;
+    background-color: #EAE0E0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #4A4A4A;
+    padding-left: 6px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-signup {
+    width: 223px;
+    height: 43px;
+    background-color: #6B3D23;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+    margin-top: 11px;
+}
+
+.link {
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 27px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

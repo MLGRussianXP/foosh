@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.forms.widgets import PasswordInput, TextInput
+from django.forms import widgets
 
 from users.models import CustomUser, School, Student
 
@@ -16,32 +16,55 @@ class StylesFormMixin(forms.ModelForm):
 
 
 class CustomAuthForm(AuthenticationForm):
-    username = forms.CharField(
-        widget=TextInput(attrs={"placeholder": "Почта"}),
+    username = forms.EmailField(
+        widget=widgets.EmailInput(attrs={"placeholder": "Почта"}),
     )
     password = forms.CharField(
-        widget=PasswordInput(
+        widget=widgets.PasswordInput(
             attrs={"placeholder": "Пароль"},
         ),
     )
 
 
-class StudentSignUpForm(StylesFormMixin, UserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(
+        widget=widgets.EmailInput(attrs={"placeholder": "Почта"}),
+    )
+    password1 = forms.CharField(
+        widget=widgets.PasswordInput(attrs={"placeholder": "Пароль"}),
+    )
+    password2 = forms.CharField(
+        widget=widgets.PasswordInput(
+            attrs={"placeholder": "Повторите пароль"},
+        ),
+    )
+
+
+class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
     name = forms.CharField(
         max_length=100,
         label="Имя",
         required=True,
+        widget=widgets.TextInput(
+            attrs={"placeholder": "Имя"},
+        ),
     )
 
     surname = forms.CharField(
         max_length=100,
         label="Фамилия",
         required=True,
+        widget=widgets.TextInput(
+            attrs={"placeholder": "Фамилия"},
+        ),
     )
 
     patronymic = forms.CharField(
         max_length=100,
         label="Отчество",
+        widget=widgets.TextInput(
+            attrs={"placeholder": "Отчество"},
+        ),
     )
 
     school = forms.ModelChoiceField(
@@ -74,17 +97,23 @@ class StudentSignUpForm(StylesFormMixin, UserCreationForm):
         return user
 
 
-class SchoolSignUpForm(StylesFormMixin, UserCreationForm):
+class SchoolSignUpForm(StylesFormMixin, CustomUserCreationForm):
     name = forms.CharField(
         max_length=255,
         label="Название",
         required=True,
+        widget=widgets.TextInput(
+            attrs={"placeholder": "Название"},
+        ),
     )
 
     city = forms.CharField(
         max_length=255,
         label="Город",
         required=True,
+        widget=widgets.TextInput(
+            attrs={"placeholder": "Город"},
+        ),
     )
 
     class Meta(UserCreationForm.Meta):
