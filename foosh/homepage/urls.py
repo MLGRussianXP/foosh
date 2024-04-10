@@ -9,5 +9,5 @@ __all__ = []
 app_name = "homepage"
 
 urlpatterns = [
-    path("", views.Home.as_view()),
+    path("", views.Home.as_view(), name="home"),
 ]
