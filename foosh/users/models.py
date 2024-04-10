@@ -50,6 +50,9 @@ class School(models.Model):
         blank=False,
     )
 
+    def __str__(self):
+        return f"{self.name} ({self.city})"
+
 
 class Student(models.Model):
     user = models.OneToOneField(
