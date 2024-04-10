@@ -1,0 +1,23 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" href="{% static '/css/users/auth.css' %}">
+  <body style="background-image: url('{% static '/imgs/users/bg_login.svg' %}')">
+    <div class="bg-form">
+      <img src="{% static '/imgs/users/logo.svg' %}" alt="" class="logo">
+      <h1 class="title">Войдите в личный кабинет</h1>
+      <form method="post" action="" class="form" style="background-image: url('{% static '/imgs/users/bg_log-card.svg' %}')">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field }}
+            {% if field.help_text %}
+              {{ field.help_text|safe }}
+            {% endif %}
+        {% endfor %}
+        <button type="submit" class="btn-signin">Войти</button>
+        <a href="register.html" class="link">Нет аккаунта?</a>
+      </form>
+  </div> 
+{% endblock %}
+
+
