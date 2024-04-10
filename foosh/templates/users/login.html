@@ -8,17 +8,7 @@
       <h1 class="title">Войдите в личный кабинет</h1>
       <form method="post" action="" class="form" style="background-image: url('{% static '/imgs/users/bg_log-card.svg' %}')">
         {% csrf_token %}
-        {% for field in form %}
-          {% for error in field.errors %}
-              <div class="allert alert-danger">
-                  {{ error|escape }}
-              </div>
-          {% endfor %}
-          {{ field }}
-          {% if field.help_text %}
-            {{ field.help_text|safe }}
-          {% endif %}
-        {% endfor %}
+        {% include "includes/form.html" %}
         <button type="submit" class="btn-signin">Войти</button>
         <a href="{% url 'users:signup' %}" class="link">Нет аккаунта?</a>
       </form>

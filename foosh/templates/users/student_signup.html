@@ -8,15 +8,10 @@
       <h1 class="title">Регистрация</h1>
       <form method="post" action="" class="form">
         {% csrf_token %}
-          {% for field in form %}
-            {{ field }}
-            {% if field.help_text %}
-              {{ field.help_text|safe }}
-            {% endif %}
-          {% endfor %}
-          <button type="submit" class="btn-signup">Зарегистрироваться</button>
+        {% include "includes/form.html" %}
+        <button type="submit" class="btn-signup">Зарегистрироваться</button>
       </form>
-      <a href="auth.html" class="link">Уже есть аккаунт?</a>
+      <a href="{% url 'users:login' %}" class="link">Уже есть аккаунт?</a>
     </div>
   </body>
 {% endblock %}
