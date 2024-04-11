@@ -1,4 +1,6 @@
+from cities_light.models import City
 from django.contrib.auth import get_user_model
+from django.core import management
 from django.test import TestCase
 
 from users.forms import SchoolSignUpForm, StudentSignUpForm
@@ -8,7 +10,20 @@ from users.models import School, Student
 __all__ = []
 
 
-class UserModelTests(TestCase):
+def setUpModule():
+    management.call_command(
+        "cities_light_fixtures",
+        "load",
+        base_url="file:fixtures/cities_light/",
+    )
+
+
+class AbstractTests(TestCase):
+    def setUp(self):
+        self.city = City.objects.get(name="Moscow")
+
+
+class UserModelTests(AbstractTests):
     def test_create_student(self):
         user = get_user_model()
         student = user.objects.create_user(
@@ -38,15 +53,15 @@ class UserModelTests(TestCase):
         school_school = School.objects.create(
             user=school,
             name="XYZ School",
-            city="City Name",
+            city=self.city,
         )
         self.assertTrue(school.is_school)
         self.assertFalse(school.is_student)
         self.assertEqual(school_school.name, "XYZ School")
-        self.assertEqual(school_school.city, "City Name")
+        self.assertEqual(school_school.city, self.city)
 
 
-class FormTests(TestCase):
+class FormTests(AbstractTests):
     def test_student_signup_form_valid(self):
         user = get_user_model()
         school = user.objects.create_user(
@@ -57,7 +72,7 @@ class FormTests(TestCase):
         school_school = School.objects.create(
             user=school,
             name="XYZ School",
-            city="City Name",
+            city=self.city,
         )
         form = StudentSignUpForm(
             data={
@@ -79,7 +94,7 @@ class FormTests(TestCase):
                 "password1": "123123qq",
                 "password2": "123123qq",
                 "name": "XYZ School",
-                "city": "City Name",
+                "city": self.city,
             },
         )
         self.assertTrue(form.is_valid())
