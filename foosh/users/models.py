@@ -8,6 +8,8 @@ __all__ = []
 
 
 class CustomUser(AbstractUser):
+    username = None
+
     email = models.EmailField(
         unique=True,
     )
