@@ -46,10 +46,10 @@ class School(models.Model):
         blank=False,
     )
 
-    city = models.CharField(
-        "город",
-        max_length=255,
-        blank=False,
+    city = models.ForeignKey(
+        "cities_light.City",
+        on_delete=models.SET_NULL,
+        null=True,
     )
 
     def __str__(self):
