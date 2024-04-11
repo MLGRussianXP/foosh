@@ -1,3 +1,4 @@
+from cities_light.models import City
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.forms import widgets
@@ -70,6 +71,7 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
     school = forms.ModelChoiceField(
         queryset=School.objects.all(),
         label="Школа",
+        empty_label="Выберите школу",
         required=True,
     )
 
@@ -107,11 +109,12 @@ class SchoolSignUpForm(StylesFormMixin, CustomUserCreationForm):
         ),
     )
 
-    city = forms.CharField(
-        max_length=255,
+    city = forms.ModelChoiceField(
+        queryset=City.objects.all(),
         label="Город",
+        empty_label="Выберите город",
         required=True,
-        widget=widgets.TextInput(
+        widget=widgets.Select(
             attrs={"placeholder": "Город"},
         ),
     )
