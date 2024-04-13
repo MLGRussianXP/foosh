@@ -7,7 +7,9 @@ include = '\.pyi?$'
 inline-quotes = 'double'
 literal-inline-quotes = 'double'
 import-order-style = 'google'
-application-import-names = []
+application-import-names = [
+    'homepage',
+]
 ignore = [
     'W503',
 ]
