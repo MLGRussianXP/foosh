@@ -82,6 +82,7 @@ class FormTests(AbstractTests):
                 "name": "John",
                 "surname": "Doe",
                 "patronymic": "Smith",
+                "city": self.city,
                 "school": school_school,
             },
         )
