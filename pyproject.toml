@@ -9,6 +9,7 @@ literal-inline-quotes = 'double'
 import-order-style = 'google'
 application-import-names = [
     'users',
+    'homepage',
 ]
 ignore = [
     'W503',
