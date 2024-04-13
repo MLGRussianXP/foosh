@@ -80,6 +80,12 @@ class Student(models.Model):
         max_length=100,
     )
 
+    city = models.ForeignKey(
+        "cities_light.City",
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+
     school = models.ForeignKey(
         School,
         on_delete=models.SET_NULL,

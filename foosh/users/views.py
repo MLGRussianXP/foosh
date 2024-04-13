@@ -1,9 +1,10 @@
+from cities_light.models import City
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.views.generic import CreateView, TemplateView
 
 from users.forms import SchoolSignUpForm, StudentSignUpForm
-from users.models import CustomUser
+from users.models import CustomUser, School
 
 
 __all__ = []
@@ -20,6 +21,9 @@ class StudentSignUpView(CreateView):
 
     def get_context_data(self, **kwargs):
         kwargs["user_type"] = "student"
+        kwargs["form_name"] = "student_form"
+        kwargs["city_queryset"] = (City.objects.all(),)
+        kwargs["school_queryset"] = (School.objects.all(),)
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):

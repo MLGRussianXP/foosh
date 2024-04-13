@@ -4,7 +4,31 @@
             {{ error|escape }}
         </div>
     {% endfor %}
-    {{ field }}
+    {% if form_name and form_name == "student_form" %}
+        {% if field.name == "city" %}
+            <select class="input" id="city_select">
+                <option selected disabled="true">Выберите город</option>
+                {% for cities in city_queryset %}
+                    {% for city in cities %}
+                        <option value="{{ city }}">{{ city }}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+        {% elif field.name == "school" %}
+            <select class="input" id="school_select">
+                <option selected disabled="true">Выберите школу</option>
+                {% for schools in school_queryset %}
+                    {% for school in schools %}
+                        <option value="{{ school.city.display_name }}">{{ school.name }}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+        {% else %}
+            {{field}}
+        {% endif %}
+    {% else %}
+        {{ field }}
+    {% endif %}
     {% if field.help_text %}
         {{ field.help_text|safe }}
     {% endif %}

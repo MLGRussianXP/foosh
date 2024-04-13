@@ -68,6 +68,16 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
         ),
     )
 
+    city = forms.ModelChoiceField(
+        queryset=City.objects.all(),
+        label="Город",
+        empty_label="Выберите город",
+        required=True,
+        widget=widgets.Select(
+            attrs={"placeholder": "Город"},
+        ),
+    )
+
     school = forms.ModelChoiceField(
         queryset=School.objects.all(),
         label="Школа",
@@ -82,6 +92,7 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
             "name",
             "surname",
             "patronymic",
+            "city",
             "school",
         )
 
