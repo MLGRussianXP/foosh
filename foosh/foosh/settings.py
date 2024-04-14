@@ -1,3 +1,4 @@
+import os
 from os import getenv
 from pathlib import Path
 
@@ -23,6 +24,7 @@ SECRET_KEY = getenv("DJANGO_SECRET_KEY", "not_secret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = get_bool("DJANGO_DEBUG", "False")
+DJANGO_TEST = get_bool("DJANGO_TEST", "False")
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users.apps.UsersConfig",
     "cities_light",
+    "django_recaptcha",
 ]
 
 MIDDLEWARE = [
@@ -150,3 +153,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+RECAPTCHA_PUBLIC_KEY = "6LdIR7opAAAAAKdRt2NHtBe-w4BTzCOIbmpAV6dA"
+RECAPTCHA_PRIVATE_KEY = "6LdIR7opAAAAABkuaO5eF4HG7piH_BA90t0cJKBl"

@@ -1,3 +1,4 @@
 Django==4.2.9
 python-dotenv==1.0.1
 django-cities-light==3.10.1
+django_recaptcha==4.0.0

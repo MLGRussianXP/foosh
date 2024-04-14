@@ -1,7 +1,10 @@
+from unittest.mock import patch
+
 from cities_light.models import City
 from django.contrib.auth import get_user_model
 from django.core import management
-from django.test import TestCase
+from django.test import override_settings, TestCase
+from django_recaptcha.client import RecaptchaResponse
 
 from users.forms import SchoolSignUpForm, StudentSignUpForm
 from users.models import School, Student
@@ -61,8 +64,11 @@ class UserModelTests(AbstractTests):
         self.assertEqual(school_school.city, self.city)
 
 
+@override_settings(DJANGO_TEST=True)
 class FormTests(AbstractTests):
-    def test_student_signup_form_valid(self):
+    @patch("django_recaptcha.fields.client.submit")
+    def test_student_signup_form_valid(self, mocked_submit):
+        mocked_submit.return_value = RecaptchaResponse(is_valid=True)
         user = get_user_model()
         school = user.objects.create_user(
             email="school@example.com",
@@ -84,11 +90,14 @@ class FormTests(AbstractTests):
                 "patronymic": "Smith",
                 "city": self.city,
                 "school": school_school,
+                "g-recaptcha-response": "PASSED",
             },
         )
         self.assertTrue(form.is_valid())
 
-    def test_school_signup_form_valid(self):
+    @patch("django_recaptcha.fields.client.submit")
+    def test_school_signup_form_valid(self, mocked_submit):
+        mocked_submit.return_value = RecaptchaResponse(is_valid=True)
         form = SchoolSignUpForm(
             data={
                 "email": "test@example.com",
@@ -96,6 +105,7 @@ class FormTests(AbstractTests):
                 "password2": "123123qq",
                 "name": "XYZ School",
                 "city": self.city,
+                "g-recaptcha-response": "PASSED",
             },
         )
         self.assertTrue(form.is_valid())

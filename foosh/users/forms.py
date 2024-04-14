@@ -2,6 +2,7 @@ from cities_light.models import City
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.forms import widgets
+from django_recaptcha.fields import ReCaptchaField
 
 from users.models import CustomUser, School, Student
 
@@ -13,7 +14,8 @@ class StylesFormMixin(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():
-            field.field.widget.attrs["class"] = "input"
+            if field.html_name != "captcha":
+                field.field.widget.attrs["class"] = "input"
 
 
 class CustomAuthForm(AuthenticationForm):
@@ -25,6 +27,7 @@ class CustomAuthForm(AuthenticationForm):
             attrs={"placeholder": "Пароль"},
         ),
     )
+    captcha = ReCaptchaField()
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -85,6 +88,8 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
         required=True,
     )
 
+    captcha = ReCaptchaField()
+
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = (
@@ -94,6 +99,7 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
             "patronymic",
             "city",
             "school",
+            "captcha",
         )
 
     def save(self):
@@ -130,12 +136,15 @@ class SchoolSignUpForm(StylesFormMixin, CustomUserCreationForm):
         ),
     )
 
+    captcha = ReCaptchaField()
+
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = (
             CustomUser.email.field.name,
             "name",
             "city",
+            "captcha",
         )
 
     def save(self):
