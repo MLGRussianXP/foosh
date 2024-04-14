@@ -1,7 +1,7 @@
 {% load static %}
 <header class="header">
     <div class="header-content">
-        <a href="#"><img src="{% static '/imgs/header/logo.svg' %}" alt="logo" class="logo"></a>
+        <a href="{% url 'homepage:home' %}"><img src="{% static '/imgs/header/logo.svg' %}" alt="logo" class="logo"></a>
         <ul class="navbar-header">
             <a href="#" class="nav-item">
                 <li>Каталог</li>
@@ -19,16 +19,15 @@
                     </a>
                     <div class="user-info">
                         <a href="#" class="username">
-                            {% comment %} {{ user.username }} {% endcomment %}
-                            <p>Сергей</p>
+                            {{ user.email }}
                         </a>
-                        <a href="#">
+                        <a href="{% url 'users:logout' %}">
                             <img src="{% static '/imgs/header/logout.svg' %}" alt="logout" class="logout">
                         </a>
                     </div>
                 </div>
             {% else %}
-                <button class="btn-sign-in">Войти</button>
+                <a href="{% url 'users:login' %}" class="btn-login">Войти</a>
             {% endif %}
         </ul>
     </div>

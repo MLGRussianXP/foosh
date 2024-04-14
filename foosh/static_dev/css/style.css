@@ -55,17 +55,26 @@
     transition: .3s;
 }
 
-.btn-sign-in {
+.btn-login {
+    text-decoration: none;
     width: 119px;
     height: 37px;
     background-color: #6A3C22;
     color: #FFFFFF;
-    border: none;
     border-radius: 20px;
     margin-left: 26px;
     font-size: 18px;
     font-weight: 400;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+.btn-login:hover {
+    border: 1px solid #6A3C22;
+    background-color: #FFFFFF;
+    color: #6A3C22;
 }
 
 .nav-item:hover {

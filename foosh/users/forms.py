@@ -1,6 +1,6 @@
 from cities_light.models import City
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib import auth
 from django.forms import widgets
 from django_recaptcha.fields import ReCaptchaField
 
@@ -18,7 +18,7 @@ class StylesFormMixin(forms.ModelForm):
                 field.field.widget.attrs["class"] = "input"
 
 
-class CustomAuthForm(AuthenticationForm):
+class CustomAuthForm(auth.forms.AuthenticationForm):
     username = forms.EmailField(
         widget=widgets.EmailInput(attrs={"placeholder": "Почта"}),
     )
@@ -30,7 +30,27 @@ class CustomAuthForm(AuthenticationForm):
     captcha = ReCaptchaField()
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomPasswordChangeForm(auth.forms.PasswordChangeForm):
+    old_password = forms.CharField(
+        widget=widgets.PasswordInput(attrs={"placeholder": "Старый пароль"}),
+    )
+    new_password1 = forms.CharField(
+        widget=widgets.PasswordInput(attrs={"placeholder": "Новый пароль"}),
+    )
+    new_password2 = forms.CharField(
+        widget=widgets.PasswordInput(
+            attrs={"placeholder": "Подтвердите новый пароль"},
+        ),
+    )
+
+
+class CustomPasswordResetForm(auth.forms.PasswordResetForm):
+    email = forms.CharField(
+        widget=widgets.EmailInput(attrs={"placeholder": "Почта"}),
+    )
+
+
+class CustomUserCreationForm(auth.forms.UserCreationForm):
     email = forms.EmailField(
         widget=widgets.EmailInput(attrs={"placeholder": "Почта"}),
     )
@@ -90,7 +110,7 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
 
     captcha = ReCaptchaField()
 
-    class Meta(UserCreationForm.Meta):
+    class Meta(auth.forms.UserCreationForm.Meta):
         model = CustomUser
         fields = (
             CustomUser.email.field.name,
@@ -138,7 +158,7 @@ class SchoolSignUpForm(StylesFormMixin, CustomUserCreationForm):
 
     captcha = ReCaptchaField()
 
-    class Meta(UserCreationForm.Meta):
+    class Meta(auth.forms.UserCreationForm.Meta):
         model = CustomUser
         fields = (
             CustomUser.email.field.name,
