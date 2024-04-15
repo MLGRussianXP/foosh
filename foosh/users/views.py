@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.views.generic import CreateView, TemplateView
 
-from users.forms import SchoolSignUpForm, StudentSignUpForm
+import users.forms
 from users.models import CustomUser, School
 
 
@@ -16,7 +16,7 @@ class SignUpView(TemplateView):
 
 class StudentSignUpView(CreateView):
     model = CustomUser
-    form_class = StudentSignUpForm
+    form_class = users.forms.StudentSignUpForm
     template_name = "users/student_signup.html"
 
     def get_context_data(self, **kwargs):
@@ -34,7 +34,7 @@ class StudentSignUpView(CreateView):
 
 class SchoolSignUpView(CreateView):
     model = CustomUser
-    form_class = SchoolSignUpForm
+    form_class = users.forms.SchoolSignUpForm
     template_name = "users/school_signup.html"
 
     def get_context_data(self, **kwargs):
