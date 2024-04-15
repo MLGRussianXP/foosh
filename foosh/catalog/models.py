@@ -11,22 +11,22 @@ __all__ = []
 class Category(models.TextChoices):
     BAKERY = (
         "выпечка",
-        _("выпечка"),
+        _("bakery"),
     )
 
     DRINKS = (
         "напитки",
-        _("напитки"),
+        _("drinks"),
     )
 
     HOT = (
         "горячее",
-        _("горячее"),
+        _("hot"),
     )
 
     COMBO = (
         "комбо",
-        _("комбо"),
+        _("combo"),
     )
 
 
