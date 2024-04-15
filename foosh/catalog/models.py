@@ -8,24 +8,24 @@ from users.models import School
 __all__ = []
 
 
-class Category(models.TextChoices):
+class Category(models.IntegerChoices):
     BAKERY = (
-        "выпечка",
+        1,
         _("bakery"),
     )
 
     DRINKS = (
-        "напитки",
+        2,
         _("drinks"),
     )
 
     HOT = (
-        "горячее",
+        3,
         _("hot"),
     )
 
     COMBO = (
-        "комбо",
+        4,
         _("combo"),
     )
 

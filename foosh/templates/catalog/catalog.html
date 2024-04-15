@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Товары категории {{ view.kwargs.category }} школы "{{ user.student.school.name }}"</h1>
+  {% if items %}
+    <ul>
+      {% for item in items %}
+      <li>
+        {{ item.title }} - {{ item.price }}
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>пусто...</p>
+  {% endif %}
+{% endblock %}
