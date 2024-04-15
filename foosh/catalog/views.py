@@ -26,6 +26,6 @@ class NoCategoryRedirectView(LoginRequiredMixin, RedirectView):
     url = reverse_lazy(
         "catalog:category",
         kwargs={
-            "category": catalog.models.Category.values[0],
+            "category": catalog.models.Category.BAKERY,
         },
     )
