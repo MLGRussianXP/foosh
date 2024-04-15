@@ -1,10 +1,33 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import get_thumbnail
 
 from users.models import School
 
 
 __all__ = []
+
+
+class Category(models.TextChoices):
+    BAKERY = (
+        "выпечка",
+        _("выпечка"),
+    )
+
+    DRINKS = (
+        "напитки",
+        _("напитки"),
+    )
+
+    HOT = (
+        "горячее",
+        _("горячее"),
+    )
+
+    COMBO = (
+        "комбо",
+        _("комбо"),
+    )
 
 
 class Item(models.Model):
@@ -29,6 +52,12 @@ class Item(models.Model):
         max_digits=10,
         decimal_places=2,
         blank=False,
+    )
+
+    category = models.CharField(
+        "категория",
+        max_length=16,
+        choices=Category.choices,
     )
 
     school = models.ForeignKey(
