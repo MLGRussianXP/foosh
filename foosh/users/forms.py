@@ -117,7 +117,9 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
 
         if "city" in self.data:
             city_id = int(self.data.get("city"))
-            self.fields["school"].queryset = School.objects.filter(city_id=city_id)
+            self.fields["school"].queryset = School.objects.filter(
+                city_id=city_id,
+            )
 
     def save(self):
         user = super().save(commit=False)
