@@ -30,4 +30,9 @@ urlpatterns = [
         users.views.SchoolSignUpView.as_view(),
         name="school_signup",
     ),
+    path(
+        "load_schools/",
+        users.views.LoadSchools.as_view(),
+        name="load_schools",
+    ),
 ]

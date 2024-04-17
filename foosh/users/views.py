@@ -21,9 +21,8 @@ class StudentSignUpView(CreateView):
 
     def get_context_data(self, **kwargs):
         kwargs["user_type"] = "student"
-        kwargs["form_name"] = "student_form"
-        kwargs["city_queryset"] = (City.objects.all(),)
-        kwargs["school_queryset"] = (School.objects.all(),)
+        kwargs["cities"] = City.objects.all()
+        kwargs["schools"] = School.objects.all()
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
@@ -45,3 +44,14 @@ class SchoolSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect("/")
+
+
+class LoadSchools(TemplateView):
+    template_name = "users/school_options.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        city_id = self.request.GET.get("city")
+        schools = School.objects.filter(city_id=city_id)
+        context["schools"] = schools
+        return context
