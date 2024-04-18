@@ -1,6 +1,6 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 from django.utils.html import mark_safe
+from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import get_thumbnail, ImageField
 
 from users.models import School
@@ -10,25 +10,12 @@ __all__ = []
 
 
 class Category(models.IntegerChoices):
-    BAKERY = (
-        1,
-        _("bakery"),
-    )
+    BAKERY = 1, "Выпечка"
+    DRINKS = 2, "Напитки"
+    HOT = 3, "Горячее"
+    COMBO = 4, "Комбо"
 
-    DRINKS = (
-        2,
-        _("drinks"),
-    )
-
-    HOT = (
-        3,
-        _("hot"),
-    )
-
-    COMBO = (
-        4,
-        _("combo"),
-    )
+    __empty__ = "..."
 
 
 class Item(models.Model):
