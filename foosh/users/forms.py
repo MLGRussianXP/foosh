@@ -93,19 +93,29 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
 
     city = forms.ModelChoiceField(
         queryset=City.objects.all(),
+        to_field_name="id",
         label="Город",
         empty_label="Выберите город",
         required=True,
         widget=widgets.Select(
-            attrs={"placeholder": "Город"},
+            attrs={
+                "placeholder": "Город",
+                "hx-get": "/auth/load_schools/",
+                "hx-target": "#id_school",
+            },
         ),
     )
 
     school = forms.ModelChoiceField(
-        queryset=School.objects.all(),
+        queryset=School.objects.none(),
         label="Школа",
         empty_label="Выберите школу",
         required=True,
+        widget=widgets.Select(
+            attrs={
+                "placeholder": "Школа",
+            },
+        ),
     )
 
     captcha = ReCaptchaField()
@@ -122,6 +132,15 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
             "captcha",
         )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if "city" in self.data:
+            city_id = int(self.data.get("city"))
+            self.fields["school"].queryset = School.objects.filter(
+                city_id=city_id,
+            )
+
     def save(self):
         user = super().save(commit=False)
         user.is_student = True
@@ -131,6 +150,7 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
             name=self.cleaned_data.get("name"),
             surname=self.cleaned_data.get("surname"),
             patronymic=self.cleaned_data.get("patronymic"),
+            city=self.cleaned_data.get("city"),
             school=self.cleaned_data.get("school"),
         )
         return user

@@ -88,7 +88,7 @@ class FormTests(AbstractTests):
                 "name": "John",
                 "surname": "Doe",
                 "patronymic": "Smith",
-                "city": self.city,
+                "city": self.city.id,
                 "school": school_school,
                 "g-recaptcha-response": "PASSED",
             },
