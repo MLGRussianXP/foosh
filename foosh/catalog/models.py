@@ -79,6 +79,10 @@ class Item(models.Model):
 
         return "Нет изображения"
 
+    def get_category_display(self):
+
+        return Category(self.category).label
+
     class Meta:
         verbose_name = "товар"
         verbose_name_plural = "товары"
