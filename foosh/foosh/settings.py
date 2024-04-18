@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "homepage.apps.HomepageConfig",
     "users.apps.UsersConfig",
+    "cart.apps.CartConfig",
     "cities_light",
     "django_recaptcha",
 ]
