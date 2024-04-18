@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from sorl.thumbnail import get_thumbnail
+from django.utils.html import mark_safe
+from sorl.thumbnail import get_thumbnail, ImageField
 
 from users.models import School
 
@@ -42,7 +43,7 @@ class Item(models.Model):
         blank=False,
     )
 
-    image = models.ImageField(
+    image = ImageField(
         "изображение",
         upload_to="catalog/",
     )
@@ -54,9 +55,8 @@ class Item(models.Model):
         blank=False,
     )
 
-    category = models.CharField(
+    category = models.IntegerField(
         "категория",
-        max_length=16,
         choices=Category.choices,
     )
 
@@ -84,6 +84,14 @@ class Item(models.Model):
             crop="center",
             quality=51,
         )
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(
+                f'<img src="{self.image.url}" width="50">',
+            )
+
+        return "Нет изображения"
 
     class Meta:
         verbose_name = "товар"

@@ -54,6 +54,10 @@ class School(models.Model):
         verbose_name="город",
     )
 
+    class Meta:
+        verbose_name = "школа"
+        verbose_name_plural = "школы"
+
     def __str__(self):
         return f"{self.name} ({self.city})"
 
@@ -96,3 +100,7 @@ class Student(models.Model):
         null=True,
         verbose_name="школа",
     )
+
+    class Meta:
+        verbose_name = "ученик"
+        verbose_name_plural = "ученики"

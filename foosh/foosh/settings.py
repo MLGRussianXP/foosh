@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "catalog.apps.CatalogConfig",
     "cities_light",
+    "sorl.thumbnail",
     "django_recaptcha",
 ]
 
