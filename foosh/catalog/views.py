@@ -2,6 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
+from django.shortcuts import render
+
 
 import catalog.models
 
@@ -29,3 +31,15 @@ class NoCategoryRedirectView(LoginRequiredMixin, RedirectView):
             "category": catalog.models.Category.BAKERY,
         },
     )
+
+
+def item(request, pk):
+    template = "catalog/item.html"
+
+    item = catalog.models.Item.objects.filter(id=pk).first()
+    context = {
+        "item": item,
+        "title": item.name,
+    }
+
+    return render(request, template, context)

@@ -17,4 +17,9 @@ urlpatterns = [
         views.ItemListView.as_view(),
         name="category",
     ),
+    path(
+        "item/<int:pk>/",
+        views.item,
+        name="item",
+    ),
 ]

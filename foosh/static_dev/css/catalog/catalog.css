@@ -4,6 +4,11 @@
     width: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
 .catalog-content {
     display: flex;
     flex-direction: column;
@@ -51,11 +56,11 @@
 /* CARDS */
 
 .cards {
-    width: 1720px;
+    width: 1700px;
     display: flex;
     flex-wrap: wrap;
-    gap: 80px;
-    margin-bottom: 50px
+    gap: 30px;
+    margin-bottom: 20px;
 }
 
 .card {
@@ -65,7 +70,6 @@
     border-radius: 10px;
     border: 1px solid black;
     transition: .3s;
-    cursor: pointer;
 }
 
 .card:hover {

@@ -1,11 +1,11 @@
 {% for field in form %}
-    {% for error in field.errors %}
-        <div class="allert alert-danger">
-            {{ error|escape }}
-        </div>
-    {% endfor %}
-    {{ field }}
-    {% if field.help_text %}
-        {{ field.help_text|safe }}
-    {% endif %}
+	{% for error in field.errors %}
+		<div class="allert alert-danger">
+			{{ error|escape }}
+		</div>
+	{% endfor %}
+	{{ field }}
+	{% if field.help_text %}
+		{{ field.help_text|safe }}
+	{% endif %}
 {% endfor %}
