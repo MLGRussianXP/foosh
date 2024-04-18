@@ -38,6 +38,7 @@ class School(models.Model):
         CustomUser,
         on_delete=models.CASCADE,
         primary_key=True,
+        verbose_name="пользователь",
     )
 
     name = models.CharField(
@@ -50,6 +51,7 @@ class School(models.Model):
         "cities_light.City",
         on_delete=models.SET_NULL,
         null=True,
+        verbose_name="город",
     )
 
     def __str__(self):
@@ -61,6 +63,7 @@ class Student(models.Model):
         CustomUser,
         on_delete=models.CASCADE,
         primary_key=True,
+        verbose_name="пользователь",
     )
 
     name = models.CharField(
@@ -84,6 +87,7 @@ class Student(models.Model):
         "cities_light.City",
         on_delete=models.SET_NULL,
         null=True,
+        verbose_name="город",
     )
 
     school = models.ForeignKey(
