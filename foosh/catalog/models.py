@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.html import mark_safe
-from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import get_thumbnail, ImageField
 
 from users.models import School
