@@ -1,6 +1,7 @@
+from catalog import converters, views
+
 from django.urls import path, register_converter
 
-from catalog import converters, views
 
 register_converter(converters.CategoryConverter, "category")
 

@@ -1,7 +1,6 @@
-from django.contrib import admin
-
 from catalog.models import Item
 
+from django.contrib import admin
 
 __all__ = []
 
