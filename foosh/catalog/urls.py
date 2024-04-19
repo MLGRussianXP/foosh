@@ -1,5 +1,4 @@
 from catalog import converters, views
-
 from django.urls import path, register_converter
 
 

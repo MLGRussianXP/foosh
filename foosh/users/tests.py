@@ -1,11 +1,9 @@
 from unittest.mock import patch
 
 from cities_light.models import City
-
 from django.contrib.auth import get_user_model
 from django.core import management
-from django.test import TestCase, override_settings
-
+from django.test import override_settings, TestCase
 from django_recaptcha.client import RecaptchaResponse
 
 from users.forms import SchoolSignUpForm, StudentSignUpForm

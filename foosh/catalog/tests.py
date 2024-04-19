@@ -1,7 +1,5 @@
 from catalog.models import Category, Item
-
 from cities_light.models import City
-
 from django.contrib.auth import get_user_model
 from django.core import management
 from django.test import Client, TestCase

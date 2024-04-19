@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.html import mark_safe
-
-from sorl.thumbnail import ImageField, get_thumbnail
+from sorl.thumbnail import get_thumbnail, ImageField
 
 from users.models import School
 

@@ -1,9 +1,7 @@
 from cities_light.models import City
-
 from django import forms
 from django.contrib import auth
 from django.forms import widgets
-
 from django_recaptcha.fields import ReCaptchaField
 
 from users.models import CustomUser, School, Student
