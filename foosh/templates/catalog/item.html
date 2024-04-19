@@ -5,7 +5,9 @@
 	<main class="item">
 		<div class="item-content">
 			<div class="left-block">
-				<img src="{{ item.image.url }}" alt="item" class="item-img">
+				{% if item.image %}
+					<img src="{{ item.image.url }}" alt="item" class="item-img">
+				{% endif %}
 				<p class="about-item"><b>Описание:</b> {{ item.description }}</p>
 			</div>
 			<div class="item-info">

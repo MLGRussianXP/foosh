@@ -16,7 +16,9 @@
           {% for item in items %}
             <a href="{% url 'catalog:item' item.id %}">
               <div class="card">
-                <img src="{{ item.image.url }}" alt="item-img" class="item-img">
+                {% if item.image %}
+                  <img src="{{ item.image.url }}" alt="item-img" class="item-img">
+                {% endif %}
                 <div class="item-info">
                   <div class="favorites">
                     <p class="price">{{ item.price }}₽</p>
