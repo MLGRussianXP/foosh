@@ -278,13 +278,20 @@
 }
 
 .nav-item-footer:hover {
-    color: #6A3C22;
+    padding-top: 1px;
+    border-bottom: 1px solid #6A3C22;
 }
 
 .email {
     color: #000000;
     font-size: 18px;
     font-weight: 400;
+    text-decoration: none;
+}
+
+.email:hover {
+    padding-top: 1px;
+    border-bottom: 1px solid #6A3C22;
 }
 
 .link-icons {

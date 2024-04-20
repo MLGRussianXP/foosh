@@ -10,6 +10,7 @@ import-order-style = 'google'
 application-import-names = [
     'users',
     'homepage',
+    'catalog',
 ]
 ignore = [
     'W503',
