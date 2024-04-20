@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "homepage.apps.HomepageConfig",
     "users.apps.UsersConfig",
     "catalog.apps.CatalogConfig",
+    "cart.apps.CartConfig",
     "cities_light",
     "sorl.thumbnail",
     "django_recaptcha",
