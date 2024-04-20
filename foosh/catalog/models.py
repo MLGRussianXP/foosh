@@ -50,6 +50,7 @@ class Item(models.Model):
         School,
         on_delete=models.CASCADE,
         verbose_name="школа",
+        related_name="items",
         blank=False,
     )
 

@@ -50,6 +50,9 @@ class Order(models.Model):
         auto_now=True,
     )
 
+    def __str__(self):
+        return f"Заказ №{self.pk}"
+
     class Meta:
         verbose_name = "заказ"
         verbose_name_plural = "заказы"
