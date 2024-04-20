@@ -80,8 +80,10 @@ class Item(models.Model):
         return "Нет изображения"
 
     def get_category_display(self):
-
         return Category(self.category).label
+
+    def __str__(self):
+        return f"{self.name} ({self.school})"
 
     class Meta:
         verbose_name = "товар"
