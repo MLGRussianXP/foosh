@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "homepage.apps.HomepageConfig",
     "users.apps.UsersConfig",
     "catalog.apps.CatalogConfig",
+    "cart.apps.CartConfig",
     "cities_light",
     "sorl.thumbnail",
     "django_recaptcha",
@@ -154,6 +155,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Captcha
 
 RECAPTCHA_PUBLIC_KEY = "6LdIR7opAAAAAKdRt2NHtBe-w4BTzCOIbmpAV6dA"
 RECAPTCHA_PRIVATE_KEY = "6LdIR7opAAAAABkuaO5eF4HG7piH_BA90t0cJKBl"
