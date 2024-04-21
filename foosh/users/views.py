@@ -66,4 +66,4 @@ class ProfileView(LoginRequiredMixin, View):
         if request.user.is_school:
             return render(request, "users/school_profile.html")
 
-        return redirect()
+        return redirect("users:signup")
