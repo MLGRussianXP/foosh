@@ -4,3 +4,4 @@ django-cities-light==3.10.1
 django_recaptcha==4.0.0
 sorl-thumbnail==12.10.0
 Pillow==10.3.0
+yookassa==3.1.0
