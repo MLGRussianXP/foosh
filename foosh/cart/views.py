@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views import View
 
 from cart.models import Order, Status
@@ -9,6 +10,8 @@ __all__ = []
 
 
 class CheckoutView(LoginRequiredMixin, View):
+    login_url = reverse_lazy("users:login")
+
     def post(self, request, *args, **kwargs):
         # add check if the cart is not empty
         # otherwise redirect to the card page
