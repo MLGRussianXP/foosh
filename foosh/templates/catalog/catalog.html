@@ -33,7 +33,7 @@
                     <svg id="star5" class="star" onclick="rate('star', 5)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
                   </div>
                 </div>
-                <a href="" class="btn-buy">Добавить в корзину</a>
+                <a href="" data-action="add" data-product="{{item.id}}" class="btn-buy update-cart">Добавить в корзину</a>
               </div>
             </a>
         	{% endfor %}
@@ -43,4 +43,8 @@
 			{% endif %}
 		</div>
   </main>
+  <script>
+    var user = '{{request.user}}'
+  </script>
+  <script src="{% static '/js/cart_add_delete.js' %}"></script>
 {% endblock %}

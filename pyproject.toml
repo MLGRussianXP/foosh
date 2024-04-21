@@ -11,6 +11,7 @@ application-import-names = [
     'users',
     'homepage',
     'catalog',
+    'cart',
 ]
 ignore = [
     'W503',
