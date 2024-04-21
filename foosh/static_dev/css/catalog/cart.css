@@ -1,0 +1,137 @@
+.cart {
+    width: 100%;
+    min-height: 815px;
+}
+
+.cart-content {
+    width: 1720px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.cart-titles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 45px;
+}
+
+.items {
+    width: 830px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 45px;
+    margin-bottom: 10px;
+}
+
+.item {
+    width: 830px;
+    height: 218px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #EAE0E0;
+    padding: 11px;
+}
+
+.item-info {
+    width: 433px;
+    height: 147px;
+}
+
+.item-main-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-category {
+    margin-bottom: 23px;
+}
+
+.count-text {
+    margin-bottom: 23px;
+}
+
+.counts-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-icons {
+    display: flex;
+    gap: 11px;
+}
+
+.heart,
+.brush {
+    width: 30px;
+    height: 30px;
+}
+
+.count-item {
+    width: 180px;
+    height: 45px;
+    display: flex;
+}
+
+.input {
+    width: 60px;
+    height: 45px;
+    background-color: #B7A1A1;
+    border: none;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+#count {
+    cursor: auto;
+}
+
+.buy-block {
+    width: 672px;
+    margin-top: 113px;
+}
+
+.price-info {
+    width: 672px;
+    height: 31px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(106, 60, 34, 0.74);
+    margin-bottom: 46px;
+}
+
+.itog-text {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.result-price {
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.btn-buy {
+    background-color: #6B3D23;
+    color: #FFFFFF;
+    font-size: 27px;
+    font-weight: 500;
+    padding: 10px 230px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.btn-buy:hover {
+    background-color: transparent;
+    border: 1px solid #6B3D23;
+    color: #6B3D23;
+}

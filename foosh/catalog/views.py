@@ -41,3 +41,9 @@ def item(request, pk):
     }
 
     return render(request, template, context)
+
+
+def cart(request):
+    template = "catalog/cart.html"
+
+    return render(request, template)
