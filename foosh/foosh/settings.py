@@ -27,6 +27,11 @@ DEBUG = get_bool("DJANGO_DEBUG", "False")
 
 ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
 
+CSRF_TRUSTED_ORIGINS = getenv(
+    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    "http://127.0.0.1",
+).split(",")
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -159,8 +164,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Captcha
 
-RECAPTCHA_PUBLIC_KEY = "6LdIR7opAAAAAKdRt2NHtBe-w4BTzCOIbmpAV6dA"
-RECAPTCHA_PRIVATE_KEY = "6LdIR7opAAAAABkuaO5eF4HG7piH_BA90t0cJKBl"
+RECAPTCHA_PUBLIC_KEY = "6LcjPMMpAAAAAEklKCL0BqxmJx9FMYVnew-4FQv_"
+RECAPTCHA_PRIVATE_KEY = "6LcjPMMpAAAAAOmBajxzIcB5EvPfR-A7GjuLPtGl"
 
 # Paymnets
 

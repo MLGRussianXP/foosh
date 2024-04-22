@@ -1,11 +1,20 @@
+import json
+
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from yookassa import Payment
+from yookassa.domain.common import SecurityHelper
+from yookassa.domain.notification import (
+    WebhookNotificationEventType,
+    WebhookNotificationFactory,
+)
 
-from cart.models import Order
+from cart.models import Order, Status
+from cart.utils import get_client_ip
 
 
 __all__ = []
@@ -40,10 +49,55 @@ class CheckoutView(LoginRequiredMixin, View):
                 "capture": True,
                 "description": f"Заказ №{order.pk}",
                 "metadata": {
-                    "orderNumber": "{order.pk}",
+                    "orderNumber": f"{order.pk}",
                 },
                 "test": "test",
             },
         )
 
         return redirect(res.confirmation.confirmation_url)
+
+
+class OrderUpdateView(View):
+    http_method_names = ["post"]
+
+    def post(self, request, *args, **kwargs):
+        ip = get_client_ip(request)
+        if not SecurityHelper().is_ip_trusted(ip):
+            return HttpResponse(status=400)
+
+        event_json = json.loads(request.body)
+        try:
+            notification_object = WebhookNotificationFactory().create(
+                event_json,
+            )
+            response_object = notification_object.object
+
+            if (
+                notification_object.event
+                == WebhookNotificationEventType.PAYMENT_SUCCEEDED
+            ):
+                order = Order.objects.get(
+                    pk=response_object.metadata.get("orderNumber"),
+                )
+                status = Status.PAID
+
+            elif (
+                notification_object.event
+                == WebhookNotificationEventType.PAYMENT_CANCELED
+            ):
+                order = Order.objects.get(
+                    pk=response_object.metadata.get("orderNumber"),
+                )
+                status = Status.CANCELLED
+
+            else:
+                return HttpResponse(status=400)
+
+            order.status = status
+            order.save()
+
+        except Exception:
+            return HttpResponse(status=400)
+
+        return HttpResponse(status=200)
