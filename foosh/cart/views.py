@@ -49,7 +49,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 "capture": True,
                 "description": f"Заказ №{order.pk}",
                 "metadata": {
-                    "orderNumber": f"{order.pk}",
+                    "orderNumber": order.pk,
                 },
                 "test": "test",
             },
