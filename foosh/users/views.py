@@ -97,6 +97,7 @@ class ProfileView(LoginRequiredMixin, View):
                 "orders": orders,
                 "user_email": request.user.email,
                 "user_name": user_name,
+                "title": "Список заказов",
             }
 
             return render(request, template_name, context)
