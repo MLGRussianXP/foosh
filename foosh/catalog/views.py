@@ -10,6 +10,7 @@ __all__ = []
 
 
 class ItemListView(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy("users:login")
     template_name = "catalog/catalog.html"
     context_object_name = "items"
 
@@ -23,6 +24,7 @@ class ItemListView(LoginRequiredMixin, ListView):
 
 
 class NoCategoryRedirectView(LoginRequiredMixin, RedirectView):
+    login_url = reverse_lazy("users:login")
     url = reverse_lazy(
         "catalog:category",
         kwargs={

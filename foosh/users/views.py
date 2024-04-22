@@ -1,7 +1,8 @@
 from cities_light.models import City
 from django.contrib.auth import login
-from django.shortcuts import redirect
-from django.views.generic import CreateView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, render
+from django.views.generic import CreateView, TemplateView, View
 
 import users.forms
 from users.models import CustomUser, School
@@ -55,3 +56,14 @@ class LoadSchools(TemplateView):
         schools = School.objects.filter(city_id=city_id)
         context["schools"] = schools
         return context
+
+
+class ProfileView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_student:
+            return render(request, "users/student_profile.html")
+
+        if request.user.is_school:
+            return render(request, "users/school_profile.html")
+
+        return redirect("users:signup")

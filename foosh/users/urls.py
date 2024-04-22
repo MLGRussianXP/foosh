@@ -86,4 +86,9 @@ urlpatterns = [
         users.views.LoadSchools.as_view(),
         name="load_schools",
     ),
+    path(
+        "profile/",
+        users.views.ProfileView.as_view(),
+        name="profile",
+    ),
 ]
