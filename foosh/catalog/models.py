@@ -19,6 +19,12 @@ class Category(models.IntegerChoices):
     __empty__ = "..."
 
 
+def generate_image_filename(instance, filename):
+    ext = filename.split(".")[-1]
+    filename = f"{uuid.uuid4().hex}.{ext}"
+    return f"catalog/{filename}"
+
+
 class Item(models.Model):
     name = models.CharField(
         "название",
@@ -33,9 +39,7 @@ class Item(models.Model):
 
     image = ImageField(
         "изображение",
-        upload_to=lambda instance, filename: (
-            f"catalog/{uuid.uuid4().hex}_{filename}"
-        ),
+        upload_to=generate_image_filename,
     )
 
     price = models.DecimalField(
