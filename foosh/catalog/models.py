@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.utils.html import mark_safe
 from sorl.thumbnail import get_thumbnail, ImageField
@@ -31,7 +33,9 @@ class Item(models.Model):
 
     image = ImageField(
         "изображение",
-        upload_to="catalog/",
+        upload_to=lambda instance, filename: (
+            f"catalog/{uuid.uuid4().hex}_{filename}"
+        ),
     )
 
     price = models.DecimalField(
