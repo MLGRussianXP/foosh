@@ -14,8 +14,8 @@ class StylesFormMixin(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():
-            if field.html_name != "captcha":
-                field.field.widget.attrs["class"] = "input"
+            # if field.html_name != "captcha":
+            field.field.widget.attrs["class"] = "input"
 
 
 class CustomAuthForm(auth.forms.AuthenticationForm):
@@ -27,7 +27,7 @@ class CustomAuthForm(auth.forms.AuthenticationForm):
             attrs={"placeholder": "Пароль"},
         ),
     )
-    captcha = ReCaptchaField()
+    # captcha = ReCaptchaField()
 
 
 class CustomPasswordChangeForm(auth.forms.PasswordChangeForm):
@@ -118,7 +118,7 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
         ),
     )
 
-    captcha = ReCaptchaField()
+    # captcha = ReCaptchaField()
 
     class Meta(auth.forms.UserCreationForm.Meta):
         model = CustomUser
@@ -129,7 +129,7 @@ class StudentSignUpForm(StylesFormMixin, CustomUserCreationForm):
             "patronymic",
             "city",
             "school",
-            "captcha",
+            # "captcha",
         )
 
     def __init__(self, *args, **kwargs):
@@ -176,7 +176,7 @@ class SchoolSignUpForm(StylesFormMixin, CustomUserCreationForm):
         ),
     )
 
-    captcha = ReCaptchaField()
+    # captcha = ReCaptchaField()
 
     class Meta(auth.forms.UserCreationForm.Meta):
         model = CustomUser
@@ -184,7 +184,7 @@ class SchoolSignUpForm(StylesFormMixin, CustomUserCreationForm):
             CustomUser.email.field.name,
             "name",
             "city",
-            "captcha",
+            # "captcha",
         )
 
     def save(self):
