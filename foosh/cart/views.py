@@ -30,16 +30,17 @@ class CheckoutView(LoginRequiredMixin, View):
             user=request.user.student,
             school=request.user.student.school,
         )
+        order.save()
 
         # add items from the cart (now, every item from the current school)
         order.items.add(*request.user.student.school.items.all())
+        order.save()
         # then, empty the cart
 
-        total_price = sum(item.price for item in order.items.all())
         res = Payment.create(
             {
                 "amount": {
-                    "value": total_price,
+                    "value": order.total_price,
                     "currency": "RUB",
                 },
                 "confirmation": {
@@ -54,6 +55,10 @@ class CheckoutView(LoginRequiredMixin, View):
                 "test": "test",
             },
         )
+
+        payment_url = res.confirmation.confirmation_url
+        order.payment = payment_url
+        order.save()
 
         return redirect(res.confirmation.confirmation_url)
 

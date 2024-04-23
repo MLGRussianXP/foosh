@@ -6,7 +6,7 @@
                 <p class="num-order">Заказ №{{ order.id }}</p>
                 <img src="{% static '/imgs/users/icon_clock.png' %}" alt="clock" class="clock">
                 <p class="date-text">{{ order.created_at }}</p>
-                <p class="count-order"><b>Всего: </b>{{ order.total_items }} товара(ов)</p>
+                <p class="count-order"><b>Всего: </b>{{ order.items.count }} товара(ов)</p>
             </div>
             <div class="price-order"><b>Стоимость заказа:</b>{{ order.total_price }}₽</div>
         </div>

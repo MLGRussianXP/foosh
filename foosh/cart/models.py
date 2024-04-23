@@ -34,10 +34,22 @@ class Order(models.Model):
         verbose_name="товары",
     )
 
+    total_price = models.DecimalField(
+        "итого",
+        max_digits=10,
+        decimal_places=2,
+        default=0.0,
+    )
+
     status = models.IntegerField(
         "статус",
         choices=Status.choices,
         default=Status.CREATED,
+    )
+
+    payment = models.CharField(
+        "платеж",
+        max_length=255,
     )
 
     created_at = models.DateTimeField(
@@ -52,6 +64,12 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Заказ №{self.pk}"
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            self.total_price = sum(item.price for item in self.items.all())
+
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "заказ"
