@@ -3,14 +3,10 @@ from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views.generic import CreateView, TemplateView, View
-from django.db.models import Count, DecimalField, Prefetch, Sum
-from django.db.models.functions import Coalesce
-from catalog.models import Item
 
-
-import users.forms
 from cart.models import Order
-from users.models import Student, School, CustomUser
+import users.forms
+from users.models import CustomUser, School, Student
 
 
 __all__ = []
