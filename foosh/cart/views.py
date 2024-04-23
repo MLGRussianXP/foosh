@@ -2,7 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -14,8 +14,9 @@ from yookassa.domain.notification import (
     WebhookNotificationFactory,
 )
 
-from cart.models import Order, Status
+from cart.models import Cart, CartItem, Order, Status
 from cart.utils import get_client_ip
+from catalog.models import Item
 
 
 __all__ = []
@@ -67,7 +68,6 @@ class UpdateItemInCart(View):
             cart_item.delete()
 
         return JsonResponse("Item was added", safe=False)
-
 
 
 class CheckoutView(LoginRequiredMixin, View):
