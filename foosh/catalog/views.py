@@ -17,10 +17,17 @@ class ItemListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         user_school = self.request.user.student.school
         category = self.kwargs["category"]
+
         return catalog.models.Item.objects.filter(
             category=category,
             school=user_school,
         )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Каталог"
+
+        return context
 
 
 class NoCategoryRedirectView(LoginRequiredMixin, RedirectView):
