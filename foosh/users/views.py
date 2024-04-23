@@ -4,8 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views.generic import CreateView, TemplateView, View
 
+from cart.models import Order
 import users.forms
-from users.models import CustomUser, School
+from users.models import CustomUser, School, Student
 
 
 __all__ = []
@@ -24,6 +25,7 @@ class StudentSignUpView(CreateView):
         kwargs["user_type"] = "student"
         kwargs["cities"] = City.objects.all()
         kwargs["schools"] = School.objects.all()
+        kwargs["title"] = "Регистрация"
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
@@ -63,17 +65,39 @@ class ProfileView(LoginRequiredMixin, View):
         if request.user.is_student:
             template_name = "users/student_profile.html"
 
-            return render(request, template_name)
+            user = Student.objects.filter(user_id=request.user.id).first()
+            user_orders = Order.objects.filter(user=user)
+
+            context = {
+                "orders": user_orders,
+                "title": "Личный кабинет",
+            }
+
+            return render(request, template_name, context)
 
         if request.user.is_school:
             if nav == "orders":
                 template_name = "users/school_profile_orders.html"
 
-                return render(request, template_name)
+                school = School.objects.filter(user_id=request.user.id).first()
+                user_orders = Order.objects.filter(school=school).order_by(
+                    "-created_at",
+                )
+
+                context = {
+                    "orders": user_orders,
+                    "title": "Список заказов",
+                }
+
+                return render(request, template_name, context)
 
             if nav == "menu":
                 template_name = "users/school_profile_menu.html"
 
-                return render(request, template_name)
+                context = {
+                    "title": "Список товаров",
+                }
+
+                return render(request, template_name, context)
 
         return redirect("users:signup")

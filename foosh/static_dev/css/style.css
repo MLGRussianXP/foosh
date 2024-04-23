@@ -6,6 +6,10 @@
     font-family: "Bellota Text", sans-serif;
 }
 
+:root {
+    --main-color: #6A3C22;
+}
+
 /* HEADER */
 
 .header {
@@ -59,7 +63,7 @@
     text-decoration: none;
     width: 119px;
     height: 37px;
-    background-color: #6A3C22;
+    background-color: var(--main-color);
     color: #FFFFFF;
     border-radius: 20px;
     margin-left: 26px;
@@ -72,13 +76,13 @@
 }
 
 .btn-login:hover {
-    border: 1px solid #6A3C22;
+    border: 1px solid var(--main-color);
     background-color: #FFFFFF;
-    color: #6A3C22;
+    color: var(--main-color);
 }
 
 .nav-item:hover {
-    background-color: #6A3C22;
+    background-color: var(--main-color);
     color: #FFFFFF;
 }
 
@@ -157,26 +161,26 @@
 }
 
 .btn {
-    width: 300px;
-    height: 72px;
     border: none;
     border-radius: 30px;
     font-size: 24px;
     font-weight: 400;
     cursor: pointer;
     transition: .3s;
+    text-decoration: none;
+    padding: 22px 43px;
 }
 
 .btn-catalog {
-    background-color: #6A3C22;
+    background-color: var(--main-color);
     color: #FFFFFF;
     border: none;
 }
 
 .btn-about-us {
     background-color: #FFFFFF;
-    color: #6A3C22;
-    border: 1px solid #6A3C22;
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
 }
 
 .btn:hover {
@@ -202,6 +206,7 @@
     width: 1720px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 58px;
 }
 
 .why-us-card {
@@ -233,9 +238,14 @@
 }
 
 .btn-make-order {
-    background-color: #6A3C22;
+    background-color: var(--main-color);
     color: #FFFFFF;
-    margin: 58px 0 100px 0;
+    padding: 22px 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    text-decoration: none;
 }
 
 /* FOOTER */
@@ -291,7 +301,7 @@
 
 .email:hover {
     padding-top: 1px;
-    border-bottom: 1px solid #6A3C22;
+    border-bottom: 1px solid var(--main-color);
 }
 
 .link-icons {

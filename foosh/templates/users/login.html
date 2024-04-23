@@ -11,6 +11,7 @@
         {% include "includes/form.html" %}
         <button type="submit" class="btn-signin">Войти</button>
         <a href="{% url 'users:signup' %}" class="link">Нет аккаунта?</a>
+        <a href="{% url 'users:password_reset' %}" class="link">Забыли пароль?</a>
       </form>
     </div> 
   </body>

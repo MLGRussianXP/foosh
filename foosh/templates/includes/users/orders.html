@@ -1,0 +1,29 @@
+{% load static %}
+{% for order in orders %}
+    <div class="order-item">
+        <div class="order-item-info">
+            <div class="order-item-main-info">
+                <p class="num-order">Заказ №{{ order.id }}</p>
+                <img src="{% static '/imgs/users/icon_clock.png' %}" alt="clock" class="clock">
+                <p class="date-text">{{ order.created_at }}</p>
+                <p class="count-order"><b>Всего: </b>{{ order.items.count }} товара(ов)</p>
+            </div>
+            <div class="price-order"><b>Стоимость заказа:</b>{{ order.total_price }}₽</div>
+        </div>
+        {% for item in order.items.all %}
+            <div class="order-item-detail">
+                <div class="detail-info">
+                    <div class="item-properties">
+                        <p class="item-name">{{ item.name }}</p>
+                        <p class="item-category">{{ item.get_category_display }}</p>
+                    </div>
+                    <p class="item-price">{{ item.price }}₽</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% empty %}
+        <h1 class="no-order">
+            В данный момент заказов нет
+        </h1>
+{% endfor %}

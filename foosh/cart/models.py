@@ -1,10 +1,43 @@
 from django.db import models
 
 from catalog.models import Item
-from users.models import School, Student
+from users.models import CustomUser, School, Student
 
 
 __all__ = []
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="carts",
+        verbose_name="корзина",
+    )
+
+
+class CartItem(models.Model):
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+        related_name="items",
+        verbose_name="товар",
+    )
+
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.CASCADE,
+        related_name="cartitems",
+        verbose_name="однотоварная корзина",
+    )
+
+    quantity = models.IntegerField(
+        default=0,
+        verbose_name="количество",
+    )
+
+    def __str__(self):
+        return self.product.name.field.name
 
 
 class Status(models.IntegerChoices):
@@ -34,10 +67,22 @@ class Order(models.Model):
         verbose_name="товары",
     )
 
+    total_price = models.DecimalField(
+        "итого",
+        max_digits=10,
+        decimal_places=2,
+        default=0.0,
+    )
+
     status = models.IntegerField(
         "статус",
         choices=Status.choices,
         default=Status.CREATED,
+    )
+
+    payment = models.CharField(
+        "платеж",
+        max_length=255,
     )
 
     created_at = models.DateTimeField(
@@ -52,6 +97,12 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Заказ №{self.pk}"
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            self.total_price = sum(item.price for item in self.items.all())
+
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "заказ"
