@@ -161,14 +161,14 @@
 }
 
 .btn {
-    width: 300px;
-    height: 72px;
     border: none;
     border-radius: 30px;
     font-size: 24px;
     font-weight: 400;
     cursor: pointer;
     transition: .3s;
+    text-decoration: none;
+    padding: 22px 43px;
 }
 
 .btn-catalog {
@@ -206,6 +206,7 @@
     width: 1720px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 58px;
 }
 
 .why-us-card {
@@ -239,7 +240,12 @@
 .btn-make-order {
     background-color: var(--main-color);
     color: #FFFFFF;
-    margin: 58px 0 100px 0;
+    padding: 22px 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    text-decoration: none;
 }
 
 /* FOOTER */

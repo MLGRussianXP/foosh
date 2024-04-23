@@ -7,8 +7,12 @@
         <h1 class="main-title">Покупайте еду как<br><span class="bg-main-title">Вам удобно!</span></h1>
         <p class="main-text">Cервис онлайн-заказа еды в вашем учебном заведении</p>
         <div class="main-btns">
-          <button class="btn btn-catalog">Перейти в каталог</button>
-          <button class="btn btn-about-us">Подробнее о нас ►</button>
+          {% if user.is_authenticated %}
+            <a href="{% url 'catalog:category' 1 %}" class="btn btn-catalog">Перейти в каталог</a>
+          {% else %}
+            <a href="{% url 'users:login' %}" class="btn btn-catalog">Перейти в каталог</a>
+          {% endif %}
+          <a class="btn btn-about-us">Подробнее о нас ►</a>
         </div>
       </div>
       <img src="{% static 'imgs/homepage/main-image.png' %}" alt="" class="main-img">
@@ -37,7 +41,11 @@
           <p class="why-us-card-text">Может подключиться любое учебное заведение</p>
         </div>
       </div>
-      <button class="btn btn-make-order">Сделать заказ</button>
+      {% if user.is_authenticated %}
+        <a href="{% url 'catalog:category' 1 %}" class="btn btn-make-order">Сделать заказ</a>
+      {% else %}
+        <a href="{% url 'users:login' %}" class="btn btn-make-order">Сделать заказ</a>
+      {% endif %}
     </section>
   </main>
 {% endblock content %}
