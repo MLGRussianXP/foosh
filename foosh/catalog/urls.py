@@ -23,9 +23,4 @@ urlpatterns = [
         views.item,
         name="item",
     ),
-    path(
-        "cart",
-        views.cart,
-        name="cart",
-    ),
 ]

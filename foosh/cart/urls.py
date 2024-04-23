@@ -11,7 +11,7 @@ app_name = "cart"
 
 urlpatterns = [
     path(
-        "cart/",
+        "",
         cart.views.CartView.as_view(),
         name="cart_view",
     ),

@@ -22,13 +22,11 @@ from catalog.models import Item
 __all__ = []
 
 
-class CartView(TemplateView):
+class CartView(LoginRequiredMixin, TemplateView):
+    login_url = reverse_lazy("users:login")
     template_name = "cart/cart.html"
 
     def get_context_data(self, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("users:login")
-
         context = super().get_context_data(**kwargs)
         cart, created = Cart.objects.get_or_create(
             user=self.request.user,
@@ -39,11 +37,10 @@ class CartView(TemplateView):
         return context
 
 
-class UpdateItemInCart(View):
-    def post(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return redirect("users:login")
+class UpdateItemInCart(LoginRequiredMixin, View):
+    login_url = reverse_lazy("users:login")
 
+    def post(self, request, *args, **kwargs):
         data = json.loads(self.request.body)
         product_id = data["product_id"]
         action = data["action"]
