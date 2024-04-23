@@ -12,7 +12,7 @@
                 <P class="student-field"><b>Почта:</b>{{ user.user__email }}</P>
                 <div class="btns-edit">
                     <a href="" class="btn-edit btn-edit-profile">Редактировать профиль</a>
-                    <a href="" class="btn-edit btn-edit-password">Изменить пароль</a>
+                    <a href="{% url 'users:password_change' %}" class="btn-edit btn-edit-password">Изменить пароль</a>
                 </div>
             </div>
             <div class="student-orders">
