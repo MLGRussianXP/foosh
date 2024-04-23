@@ -1,11 +1,11 @@
 {% load static %}
 <link rel="stylesheet" href="{% static '/css/users/profile-info.css' %}">
 <section class="personal-account-info">
-    <h1 class="title">Личный кабинет</h1>
-    <h2 class="name-account">{{ user_name.name }}</h2>
-    <p class="login-text"><b>Почта:</b> {{ user.email }}</p>
-    <div class="btns">
-        <a href="" class="custom-btn-profile edit-profile">Редактировать профиль</a>
-        <a href="{% url 'users:password_change' %}" class="custom-btn-profile edit-password">Изменить пароль</a>
-    </div>
+	<h1 class="title">Личный кабинет</h1>
+	<h2 class="name-account">{{ user.school.name }}</h2>
+	<p class="login-text"><b>Почта:</b> {{ user.email }}</p>
+	<div class="btns">
+		<a href="" class="custom-btn-profile edit-profile">Редактировать профиль</a>
+		<a href="{% url 'users:password_change' %}" class="custom-btn-profile edit-password">Изменить пароль</a>
+	</div>
 </section>

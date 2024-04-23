@@ -6,10 +6,10 @@
         <h1 class="student-profile-title">Личный кабинет</h1>
         <div class="student-info">
             <div class="student-main-info">
-                <h1 class="student-name">{{ user.surname }} {{ user.name }} {{ user.patronymic }}</h1>
-                <p class="student-field"><b>Учебное заведение:</b>{{ user.school__name }}</p>
-                <p class="student-field"><b>Город:</b>{{ user.city__name }}</p>
-                <P class="student-field"><b>Почта:</b>{{ user.user__email }}</P>
+                <h1 class="student-name">{{ user.student.surname }} {{ user.student.name }} {{ user.student.patronymic }}</h1>
+                <p class="student-field"><b>Учебное заведение:</b> {{ user.student.school.name }}</p>
+                <p class="student-field"><b>Город:</b> {{ user.student.city.name }}</p>
+                <p class="student-field"><b>Почта:</b> {{ user.email }}<p>
                 <div class="btns-edit">
                     <a href="" class="btn-edit btn-edit-profile">Редактировать профиль</a>
                     <a href="{% url 'users:password_change' %}" class="btn-edit btn-edit-password">Изменить пароль</a>
