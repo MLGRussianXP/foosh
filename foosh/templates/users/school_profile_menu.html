@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/users/school_profile_menu.css' %}">
+	<main class="menu-school">
+		{% include "includes/profile-info.html" %}
+		<section class="menu-info">
+			{% include "includes/navbar-profile.html" %}
+			<div class="main-menu-info">
+				<div class="category-navbar">
+					<a href="" class="category-navbar-item">Выпечка</a>
+					<a href="" class="category-navbar-item">Горячее</a>
+					<a href="" class="category-navbar-item">Напитки</a>
+					<a href="" class="category-navbar-item">Комбо</a>
+					<a href="" class="btn-add-item">Добавить товар</a>
+					<a href="" class="btn-edit-menu">Редактировать меню</a>
+				</div>
+				{% if items %}
+					<div class="cards">
+						{% for item in items %}
+							{% include "includes/card.html" %}
+						{% endfor %}
+					</div>
+				{% else %}
+					<h1 class="no-items">В данный момент каталог товаров пуст</h1>
+				{% endif %}
+			</div>
+    </section>
+	</main>
+{% endblock %}

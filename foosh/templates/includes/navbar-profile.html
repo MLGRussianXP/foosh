@@ -1,6 +1,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static '/css/users/navbar-profile.css' %}">
 <div class="navbar-profile">
-    <a href="" class="nav-items-profile">меню</a>
-    <a href="{% url 'users:profile' %}" class="nav-items-profile">заказы</a>
+    <a href="{% url 'users:profile' 'menu' %}" class="nav-items-profile">меню</a>
+    <a href="{% url 'users:profile' 'orders' %}" class="nav-items-profile">заказы</a>
 </div>

@@ -87,7 +87,7 @@ urlpatterns = [
         name="load_schools",
     ),
     path(
-        "profile/",
+        "profile/<str:nav>",
         users.views.ProfileView.as_view(),
         name="profile",
     ),

@@ -12,7 +12,7 @@
 							<img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
 					</a>
 					<div class="user-info">
-						<a href="{% url 'users:profile' %}" class="username">
+						<a href="{% url 'users:profile' 'menu' %}" class="username">
 								{{ user.email }}
 						</a>
 						<a href="{% url 'users:logout' %}">

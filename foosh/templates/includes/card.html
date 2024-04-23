@@ -1,0 +1,22 @@
+<a href="{% url 'catalog:item' item.id %}">
+	<div class="card">
+		{% if item.image %}
+			<img src="{{ item.image.url }}" alt="item-img" class="item-img">
+		{% endif %}
+		<div class="item-info">
+			<div class="favorites">
+				<p class="price">{{ item.price }}₽</p>
+				<svg id="heart" class="heart" onclick="rate('heart', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+			</div>
+			<p class="name">{{ item.name }}</p>
+			<div class="stars">
+				<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+				<svg id="star2" class="star" onclick="rate('star', 2)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+				<svg id="star3" class="star" onclick="rate('star', 3)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+				<svg id="star4" class="star" onclick="rate('star', 4)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+				<svg id="star5" class="star" onclick="rate('star', 5)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+			</div>
+		</div>
+		<a href="" class="btn-buy">Добавить в корзину</a>
+	</div>
+</a>
