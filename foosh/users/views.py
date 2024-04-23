@@ -25,6 +25,7 @@ class StudentSignUpView(CreateView):
         kwargs["user_type"] = "student"
         kwargs["cities"] = City.objects.all()
         kwargs["schools"] = School.objects.all()
+        kwargs["title"] = "Регистрация"
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
@@ -85,6 +86,7 @@ class ProfileView(LoginRequiredMixin, View):
 
                 context = {
                     "orders": user_orders,
+                    "title": "Список заказов",
                 }
 
                 return render(request, template_name, context)
@@ -92,6 +94,10 @@ class ProfileView(LoginRequiredMixin, View):
             if nav == "menu":
                 template_name = "users/school_profile_menu.html"
 
-                return render(request, template_name)
+                context = {
+                    "title": "Список товаров",
+                }
+
+                return render(request, template_name, context)
 
         return redirect("users:signup")
