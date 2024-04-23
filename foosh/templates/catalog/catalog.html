@@ -22,4 +22,8 @@
 			{% endif %}
 		</div>
   </main>
+  <script>
+    var user = '{{request.user}}'
+  </script>
+  <script src="{% static '/js/cart_add_delete.js' %}"></script>
 {% endblock %}
