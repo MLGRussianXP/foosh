@@ -12,7 +12,7 @@
 			<a href="{% url 'homepage:home' %}" class="nav-item">Контакты</a>
 			{% if user.is_authenticated %}
 				<div class="auth-user-header">
-					<a href="{% url 'catalog:cart' %}">
+					<a href="{% url 'cart:cart' %}">
 							<img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
 					</a>
 					<div class="user-info">
