@@ -13,7 +13,7 @@ urlpatterns = [
     path(
         "",
         cart.views.CartView.as_view(),
-        name="cart_view",
+        name="cart",
     ),
     path(
         "update_item_in_cart/",

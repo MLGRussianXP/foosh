@@ -71,18 +71,25 @@ class CheckoutView(LoginRequiredMixin, View):
     login_url = reverse_lazy("users:login")
 
     def get(self, request, *args, **kwargs):
-        # add check if the cart is not empty
-        # otherwise redirect to the cart page
+        cart, created = Cart.objects.get_or_create(
+            user=self.request.user,
+        )
+        if created or CartItem.objects.filter(cart=cart).count() == 0:
+            return redirect("cart:cart")
+
         order = Order.objects.create(
             user=request.user.student,
             school=request.user.student.school,
         )
         order.save()
 
-        # add items from the cart (now, every item from the current school)
-        order.items.add(*request.user.student.school.items.all())
+        for i in CartItem.objects.filter(cart=cart):
+            for _ in range(i.quantity):
+                order.items.add(i.item)
+
         order.save()
-        # then, empty the cart
+
+        cart.delete()
 
         res = Payment.create(
             {
