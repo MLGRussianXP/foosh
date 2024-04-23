@@ -3,9 +3,14 @@ from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views.generic import CreateView, TemplateView, View
+from django.db.models import Count, DecimalField, Prefetch, Sum
+from django.db.models.functions import Coalesce
+from catalog.models import Item
+
 
 import users.forms
-from users.models import CustomUser, School
+from cart.models import Order
+from users.models import Student, School, CustomUser
 
 
 __all__ = []
@@ -63,13 +68,28 @@ class ProfileView(LoginRequiredMixin, View):
         if request.user.is_student:
             template_name = "users/student_profile.html"
 
-            return render(request, template_name)
+            user = Student.objects.filter(user_id=request.user.id).first()
+            user_orders = Order.objects.filter(user=user)
+
+            context = {
+                "orders": user_orders,
+                "title": "Личный кабинет",
+            }
+
+            return render(request, template_name, context)
 
         if request.user.is_school:
             if nav == "orders":
                 template_name = "users/school_profile_orders.html"
 
-                return render(request, template_name)
+                school = School.objects.filter(user_id=request.user.id).first()
+                user_orders = Order.objects.filter(school=school)
+
+                context = {
+                    "orders": user_orders,
+                }
+
+                return render(request, template_name, context)
 
             if nav == "menu":
                 template_name = "users/school_profile_menu.html"

@@ -1,5 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <h1>Hello, {{ user.student.name }}!</h1>
+    <link rel="stylesheet" href="{% static '/css/users/student_profile.css' %}">
+    <main class="student-profile">
+        <h1 class="student-profile-title">Личный кабинет</h1>
+        <div class="student-info">
+            <div class="student-main-info">
+                <h1 class="student-name">{{ user.surname }} {{ user.name }} {{ user.patronymic }}</h1>
+                <p class="student-field"><b>Учебное заведение:</b>{{ user.school__name }}</p>
+                <p class="student-field"><b>Город:</b>{{ user.city__name }}</p>
+                <P class="student-field"><b>Почта:</b>{{ user.user__email }}</P>
+                <div class="btns-edit">
+                    <a href="" class="btn-edit btn-edit-profile">Редактировать профиль</a>
+                    <a href="" class="btn-edit btn-edit-password">Изменить пароль</a>
+                </div>
+            </div>
+            <div class="student-orders">
+                <h1>Заказы</h1>
+                <div class="student-order">
+                    {% include "includes/users/orders.html" %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="{% static '/js/school_profile_orders.js' %}"></script>
 {% endblock %}

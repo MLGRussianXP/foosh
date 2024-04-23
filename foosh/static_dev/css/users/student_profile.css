@@ -1,0 +1,160 @@
+.student-profile {
+    width: 1720px;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 100px;
+}
+
+.student-info {
+    display: flex;
+    justify-content: space-between;
+    width: 1720px;
+    margin-top: 50px;
+}
+
+.student-profile-title {
+    font-size: 27px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.student-main-info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.student-name {
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.student-field {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.btns-edit {
+    display: flex;
+    gap: 22px;
+}
+
+.btn-edit {
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.btn-edit-profile {
+    background-color: #6B3D23;
+    color: #FFFFFF;
+}
+
+.btn-edit-profile:hover {
+    background-color: #7e563f;
+}
+
+.btn-edit-password {
+    background-color: transparent;
+    border: 1px solid #6B3D23;
+    color: #000000;
+}
+
+.btn-edit-password:hover {
+    background-color: #7e563f;
+    color: #FFFFFF;
+}
+
+.student-orders {
+    width: 800px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+}
+
+.student-order{
+    margin-bottom: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.order-item-info {
+    width: 800px;
+    height: 104px;
+    padding: 17px 32px;
+    background-color: rgba(222, 206, 206, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border: 1px solid #6B3D23;
+}
+
+.order-item-main-info {
+    display: flex;
+    align-items: center;
+}
+
+.num-order {
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 19px;
+}
+
+.clock {
+    margin-right: 6px;
+}
+
+.date-text {
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 77px;
+}
+
+.price-order {
+    background-color: #EAE1E1;
+    width: 246px;
+    height: 41px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-item-detail {
+    width: 800px;
+    display: none;
+}
+
+.detail-info {
+    background-color: #DECECE;
+    width: 511px;
+    height: 69px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 25px 3px 8px;
+    margin-top: 23px;
+    border-radius: 5px;
+}
+
+.item-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.item-category {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.item-price {
+    font-size: 18px;
+    font-weight: 600;
+}
