@@ -2,6 +2,7 @@ from os import getenv
 from pathlib import Path
 
 from dotenv import load_dotenv
+from yookassa import Configuration
 
 
 __all__ = []
@@ -24,7 +25,12 @@ SECRET_KEY = getenv("DJANGO_SECRET_KEY", "not_secret")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = get_bool("DJANGO_DEBUG", "False")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
+
+CSRF_TRUSTED_ORIGINS = getenv(
+    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    "http://127.0.0.1",
+).split(",")
 
 
 # Application definition
@@ -156,5 +162,16 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Captcha
+
 RECAPTCHA_PUBLIC_KEY = getenv("DJANGO_RECAPTCHA_PUBLIC_KEY", "not_secret")
 RECAPTCHA_PRIVATE_KEY = getenv("DJANGO_RECAPTCHA_PRIVATE_KEY", "not_secret")
+
+# Paymnets
+
+Configuration.configure(
+    getenv("YOOKASSA_SHOP_ID", ""),
+    getenv("YOOKASSA_API_KEY", ""),
+)
+
+YOKASSA_SUCCESS_URL = getenv("YOOKASSA_SUCCESS_URL", "")

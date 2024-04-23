@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.utils.html import mark_safe
 from sorl.thumbnail import get_thumbnail, ImageField
@@ -17,6 +19,12 @@ class Category(models.IntegerChoices):
     __empty__ = "..."
 
 
+def generate_image_filename(instance, filename):
+    ext = filename.split(".")[-1]
+    filename = f"{uuid.uuid4().hex}.{ext}"
+    return f"catalog/{filename}"
+
+
 class Item(models.Model):
     name = models.CharField(
         "название",
@@ -31,7 +39,7 @@ class Item(models.Model):
 
     image = ImageField(
         "изображение",
-        upload_to="catalog/",
+        upload_to=generate_image_filename,
     )
 
     price = models.DecimalField(
@@ -50,6 +58,7 @@ class Item(models.Model):
         School,
         on_delete=models.CASCADE,
         verbose_name="школа",
+        related_name="items",
         blank=False,
     )
 
@@ -80,8 +89,10 @@ class Item(models.Model):
         return "Нет изображения"
 
     def get_category_display(self):
-
         return Category(self.category).label
+
+    def __str__(self):
+        return f"{self.name} ({self.school})"
 
     class Meta:
         verbose_name = "товар"

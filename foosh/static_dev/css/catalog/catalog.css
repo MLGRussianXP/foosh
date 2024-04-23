@@ -109,12 +109,12 @@ a {
 }
 
 .star, .heart{
-    width: 23px; /* Укажите размеры ваших изображений */
+    width: 23px;
     height: 23px;
     cursor: pointer;
-    fill: none; /* Прозрачный цвет заливки */
-    stroke: black; /* Желтая обводка */
-    stroke-width: 1; /* Толщина обводки */
+    fill: none;
+    stroke: black;
+    stroke-width: 1;
 }
 
 .heart {
@@ -123,11 +123,11 @@ a {
 }
 
 .star.active {
-    fill: yellow; /* Желтый цвет */
+    fill: yellow;
 }
 
 .heart.active {
-    fill: red; /* Желтый цвет */
+    fill: red;
 }
 
 .btn-buy {

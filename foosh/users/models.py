@@ -101,6 +101,9 @@ class Student(models.Model):
         verbose_name="школа",
     )
 
+    def __str__(self):
+        return f"{self.name} {self.surname} {self.patronymic}"
+
     class Meta:
         verbose_name = "ученик"
         verbose_name_plural = "ученики"
