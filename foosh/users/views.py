@@ -84,7 +84,7 @@ class ProfileView(LoginRequiredMixin, View):
 
                 context = {
                     "orders": user_orders,
-                    "title": "Список заказов"
+                    "title": "Список заказов",
                 }
 
                 return render(request, template_name, context)
@@ -93,7 +93,7 @@ class ProfileView(LoginRequiredMixin, View):
                 template_name = "users/school_profile_menu.html"
 
                 context = {
-                    "title": "Список товаров"
+                    "title": "Список товаров",
                 }
 
                 return render(request, template_name, context)
