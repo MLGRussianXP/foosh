@@ -20,7 +20,7 @@ urlpatterns = [
     ),
     path(
         "item/<int:pk>/",
-        views.item,
+        views.ItemDetailView.as_view(),
         name="item",
     ),
 ]
