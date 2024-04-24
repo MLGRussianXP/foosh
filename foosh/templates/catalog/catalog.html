@@ -10,20 +10,21 @@
 				<a href="{% url 'catalog:category' 2 %}" class="choice-item">Напитки</a>
 				<a href="{% url 'catalog:category' 3 %}" class="choice-item">Горячее</a>
 				<a href="{% url 'catalog:category' 4 %}" class="choice-item">Комбо</a>
-      </div>
-  		{% if items %}
-        <div class="cards">
-          {% for item in items %}
-            {% include "includes/card.html" %}
-        	{% endfor %}
-				</div>
+        </div>
+			{% if items %}
+			<div class="cards">
+				{% for item in items %}
+					{% include "includes/card.html" %}
+				{% endfor %}
+			</div>
 			{% else %}
 				<h1>В данный момент каталог товаров пуст</h1>
 			{% endif %}
-		</div>
+	    </div>
   </main>
   <script>
     var user = '{{request.user}}'
   </script>
   <script src="{% static '/js/cart_add_delete.js' %}"></script>
+  <script src="{% static '/js/change_add_to_cart.js' %}"></script>
 {% endblock %}
