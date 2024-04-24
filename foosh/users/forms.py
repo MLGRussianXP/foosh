@@ -184,7 +184,7 @@ class SchoolSignUpForm(StylesFormMixin, CustomUserCreationForm):
             CustomUser.email.field.name,
             "name",
             "city",
-            # "captcha",
+            "captcha",
         )
 
     def save(self):
