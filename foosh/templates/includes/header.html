@@ -9,14 +9,14 @@
 			{% if user.is_authenticated %}
 				<div class="auth-user-header">
 					<a href="{% url 'cart:cart' %}">
-            			<img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
+            	<img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
 					</a>
 					<div class="user-info">
 						<a href="{% url 'users:profile' 'menu' %}" class="username">
-              				{{ user.email }}
+              	{{ user.email }}
 						</a>
 						<a href="{% url 'users:logout' %}">
-              				<img src="{% static '/imgs/header/logout.svg' %}" alt="logout" class="logout">
+              <img src="{% static '/imgs/header/logout.svg' %}" alt="logout" class="logout">
 						</a>
 					</div>
 				</div>
