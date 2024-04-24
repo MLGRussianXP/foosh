@@ -14,10 +14,10 @@
 			<div class="order-item-detail">
 				<div class="detail-info">
 					<div class="item-properties">
-							<p class="item-name">{{ item.name }}</p>
-							<p class="item-category">{{ item.get_category_display }}</p>
+							<p class="item-name">{{ item.item.name }}</p>
+							<p class="item-category">{{ item.item.get_category_display }}</p>
 					</div>
-					<p class="item-price">{{ item.price }} X 10шт = 1000₽</p>
+					<p class="item-price">{{ item.item.price }} X {{ item.quantity }}шт = {% widthratio item.item.price 1 item.quantity %}₽</p>
 				</div>
 			</div>
     {% endfor %}
