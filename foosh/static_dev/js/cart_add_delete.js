@@ -18,7 +18,7 @@ const csrftoken = getCookie('csrftoken');
 
 var cart_items = document.getElementsByClassName('update-cart');
 
-for (i = 0; i < cart_items.length; i++){
+for (var i = 0; i < cart_items.length; i++){
     cart_items[i].addEventListener('click', function(){
         var product_id=this.dataset.product;
         var action=this.dataset.action;

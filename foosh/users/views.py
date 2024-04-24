@@ -72,7 +72,9 @@ class ProfileView(LoginRequiredMixin, View):
             template_name = "users/student_profile.html"
 
             user = Student.objects.filter(user_id=request.user.id).first()
-            user_orders = Order.objects.filter(user=user)
+            user_orders = Order.objects.filter(user=user).order_by(
+                "-created_at",
+            )
 
             context = {
                 "orders": user_orders,

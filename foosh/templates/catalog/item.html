@@ -25,12 +25,12 @@
 					</div>
 					<p class="price">{{ item.price }}₽</p>
 					<div class="buy-item">
-						<div class="count-item">
-							<input class="input" type="button" value="-" onClick="change('count',0,10,-1);"/>
+						<div class="count-item" id="plus_minus">
+							<input class="input update-cart" id="plus_minus_button" data-action="remove" data-product="{{item.id}}" type="button" value="-"/>
 							<input class="input" id="count" type="text" value="1"/>
-							<input class="input" type="button" value="+" onClick="change('count',0,10,1);"/>
+							<input class="input update-cart" id="plus_minus_button" data-action="add" data-product="{{item.id}}" type="button" value="+"/>
 						</div>
-						<a href="" class="btn-buy">В корзину</a>
+						<a href="" class="btn-buy" data-action="add" data-product="{{item.id}}" id="add_to_cart">В корзину</a>
 						<a href="" class="add-feedback">Оставить отзыв</a>
 					</div>
 					<div class="feedbacks">
@@ -79,6 +79,7 @@
 				</div>
 			</div>
 		</div>
-	</main>	
-	<script src="{% static '/js/count_item.js' %}"></script>
+	</main>
+	<script src="{% static '/js/change_add_to_cart.js' %}"></script>
+	<script src="{% static '/js/cart_add_delete.js' %}"></script>
 {% endblock %}
