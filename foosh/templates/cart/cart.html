@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" href="{% static '/css/cart/cart.css' %}">
+  <main class="cart">
+    <div class="cart-content">
+      <div class="left-block">
+        <div class="cart-titles">
+          <h1 class="cart-title">Ваша корзина</h1>
+          <p class="count-items">{{ cartitems.count }}</p>
+        </div>
+        {% for cartitem in cartitems %}
+        <div class="items">
+          <div class="item">
+            <img src="{{ cartitem.item.url }}" alt="keks" class="item-img">
+            <div class="item-info">
+              <div class="item-main-info">
+                <h2 class="item-name">{{ cartitem.item.name }}</h2>
+                <h2 class="item-price">{{ cartitem.item.price }}₽</h2>
+              </div>
+              <h3 class="item-category">{{ cartitem.item.category }}</h3>
+              <div class="counts-item">
+                <div class="counts-item-content">
+                  <h3 class="count-text">количество</h3>
+                  <div class="buy-item">
+                    <div class="count-item" id="plus_minus">
+                      <input class="input update-cart" id="plus_minus_button" data-action="remove" data-product="{{ cartitem.item.id }}" type="button" value="-"/>
+                      <input class="input" id="count" type="text" value="{{ cartitem.quantity }}"/>
+                      <input class="input update-cart" id="plus_minus_button" data-action="add" data-product="{{ cartitem.item.id }}" type="button" value="+"/>
+                    </div>
+                    <a href="" class="btn-buy update-cart" data-action="add" data-product="{{ cartitem.item.id }}" id="add_to_cart">В корзину</a>
+                  </div>
+                </div>
+                <div class="item-icons">
+                  <a href=""><img src="{% static '/imgs/cart/heart.png' %}" alt="" class="heart"></a>
+                  <a href=""><img src="{% static '/imgs/cart/brush.png' %}" alt="" class="brush"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="buy-block">
+        <div class="price-info">
+          <p class="itog-text">Итого</p>
+          <p class="result-price">150₽</p>
+        </div>
+        <a href="{% url 'cart:checkout' %}" class="btn-buy">Оформить заказ</a>
+      </div>
+    </div>
+  </main>
+  <script src="{% static '/js/change_add_to_cart.js' %}"></script>
+	<script src="{% static '/js/cart_add_delete.js' %}"></script>
+{% endblock %}

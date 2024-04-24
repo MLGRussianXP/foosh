@@ -1,8 +1,7 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image" href="{% static '/imgs/favicons/favicon.ico' %}">
@@ -13,10 +12,10 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <title>{{ title }}</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        {% block content %}No content{% endblock %}
+      {% block content %}No content{% endblock %}
     </main>
-</body>
+  </body>
 </html>

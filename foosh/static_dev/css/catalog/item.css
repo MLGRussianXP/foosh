@@ -1,0 +1,156 @@
+.item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.item-content {
+    width: 1770px;
+    height: 100%;
+    background: rgba(222, 206, 206, 0.2);
+    display: flex;
+    gap: 69px;
+}
+
+.left-block {
+    margin: 26px 0 0 26px;
+}
+
+.item-img {
+    width: 750px;
+    height: 512px;
+    margin-bottom: 42px;
+}
+
+.about-item {
+    width: 750px;
+    height: 512px;
+}
+
+.item-info {
+    margin-top: 26px;
+}
+
+.item-name {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.category {
+    font-size: 18px;
+}
+
+.rating {
+    display: flex;
+    justify-content: space-between;
+    width: 180px;
+    align-items: center;
+    margin-top: 27px;
+}
+
+.count-feedback {
+    font-size: 18px;
+}
+
+.star {
+    width: 23px;
+    height: 23px;
+}
+
+.price {
+    font-size: 40px;
+    font-weight: 500;
+    margin-top: 27px;
+}
+
+.buy-item {
+    width: 700px;
+    display: flex;
+    align-items: center;
+    margin-top: 26px;
+}
+
+.count-item {
+    width: 180px;
+    height: 45px;
+    display: flex;
+}
+
+.input {
+    width: 60px;
+    height: 45px;
+    background-color: #DECECE;
+    border: none;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+#count {
+    cursor: auto;
+}
+
+.btn-buy {
+    width: 208px;
+    height: 45px;
+    background-color: #6A3C22;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-feedback {
+    color: #000000;
+    font-size: 18px;
+    margin-left: 45px;
+}
+
+.feedbacks {
+    margin-top: 62px;
+}
+
+.feedback-title {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.feedback-items {
+    border-top: 1px solid #B7A1A1;
+    padding-top: 30px;
+    width: 900px;
+}
+
+.feedback-item {
+    background-color: rgba(222, 206, 206, 0.2);
+    height: 100%;
+    border: 1px solid #6A3C22;
+    margin-bottom: 10px;
+}
+
+.feedback-username {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 24px 0 6px 24px;
+}
+
+.user-rating {
+    margin-left: 24px;
+}
+
+.user-feedback-text {
+    font-size: 18px;
+    margin-top: 22px;
+    margin: 22px 0 6px 24px;
+}
+
+

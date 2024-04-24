@@ -1,34 +1,28 @@
 {% load static %}
 <header class="header">
-    <div class="header-content">
-        <a href="{% url 'homepage:home' %}"><img src="{% static '/imgs/header/logo.svg' %}" alt="logo" class="logo"></a>
-        <ul class="navbar-header">
-            <a href="#" class="nav-item">
-                <li>Каталог</li>
-            </a>
-            <a href="#" class="nav-item">
-                <li>О нас</li>
-            </a>
-            <a href="#" class="nav-item">
-                <li>Контакты</li>
-            </a>
-            {% if user.is_authenticated %}
-                <div class="auth-user-header">
-                    <a href="#">
-                        <img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
-                    </a>
-                    <div class="user-info">
-                        <a href="#" class="username">
-                            {{ user.email }}
-                        </a>
-                        <a href="{% url 'users:logout' %}">
-                            <img src="{% static '/imgs/header/logout.svg' %}" alt="logout" class="logout">
-                        </a>
-                    </div>
-                </div>
-            {% else %}
-                <a href="{% url 'users:login' %}" class="btn-login">Войти</a>
-            {% endif %}
-        </ul>
-    </div>
+	<div class="header-content">
+		<a href="{% url 'homepage:home' %}"><img src="{% static '/imgs/header/logo.svg' %}" alt="logo" class="logo"></a>
+		<div class="navbar-header">
+			<a href="{% url 'catalog:category' 1 %}" class="nav-item">Каталог</a>
+			<a href="{% url 'homepage:home' %}" class="nav-item">О нас</a>
+			<a href="{% url 'homepage:home' %}" class="nav-item">Контакты</a>
+			{% if user.is_authenticated %}
+				<div class="auth-user-header">
+					<a href="{% url 'cart:cart' %}">
+						<img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
+					</a>
+					<div class="user-info">
+						<a href="{% url 'users:profile' 'menu' %}" class="username">
+							{{ user.email }}
+						</a>
+						<a href="{% url 'users:logout' %}">
+							<img src="{% static '/imgs/header/logout.svg' %}" alt="logout" class="logout">
+						</a>
+					</div>
+				</div>
+		{% else %}
+			<a href="{% url 'users:login' %}" class="btn-login">Войти</a>
+		{% endif %}
+		</div>
+	</div>
 </header>

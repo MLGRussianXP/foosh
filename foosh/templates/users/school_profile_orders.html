@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" href="{% static '/css/users/school_profile_orders.css' %}">
+  <main class="personal-account">
+    {% include "includes/users/profile-info.html" %}
+    <section class="orders">
+      {% include "includes/users/navbar-profile.html" %}
+      <div class="ordes-items">
+        {% include "includes/users/orders.html" %}
+      </div>
+    </section>
+  </main>
+  <script src="{% static '/js/school_profile_orders.js' %}"></script>
+{% endblock %}

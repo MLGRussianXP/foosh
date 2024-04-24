@@ -1,0 +1,21 @@
+.navbar-profile {
+    display: flex;
+    gap: 24px;
+    margin: 33px 0 59px 0;
+}
+
+.nav-items-profile {
+    padding: 6px 34px;
+    background-color: transparent;
+    border: 1px solid #B7A1A1;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 27px;
+    font-weight: 300;
+    color: #000000;
+    transition: .3s;
+}
+
+.nav-items-profile:hover {
+    background-color: #DECECE;
+}

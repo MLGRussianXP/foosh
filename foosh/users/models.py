@@ -38,6 +38,7 @@ class School(models.Model):
         CustomUser,
         on_delete=models.CASCADE,
         primary_key=True,
+        verbose_name="пользователь",
     )
 
     name = models.CharField(
@@ -50,7 +51,12 @@ class School(models.Model):
         "cities_light.City",
         on_delete=models.SET_NULL,
         null=True,
+        verbose_name="город",
     )
+
+    class Meta:
+        verbose_name = "школа"
+        verbose_name_plural = "школы"
 
     def __str__(self):
         return f"{self.name} ({self.city})"
@@ -61,6 +67,7 @@ class Student(models.Model):
         CustomUser,
         on_delete=models.CASCADE,
         primary_key=True,
+        verbose_name="пользователь",
     )
 
     name = models.CharField(
@@ -84,6 +91,7 @@ class Student(models.Model):
         "cities_light.City",
         on_delete=models.SET_NULL,
         null=True,
+        verbose_name="город",
     )
 
     school = models.ForeignKey(
@@ -92,3 +100,10 @@ class Student(models.Model):
         null=True,
         verbose_name="школа",
     )
+
+    def __str__(self):
+        return f"{self.name} {self.surname} {self.patronymic}"
+
+    class Meta:
+        verbose_name = "ученик"
+        verbose_name_plural = "ученики"
