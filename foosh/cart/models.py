@@ -96,7 +96,7 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if self.pk:
             self.total_price = sum(
-                item.price * item.quantity for item in self.items.all()
+                item.item.price * item.quantity for item in self.items.all()
             )
 
         super().save(*args, **kwargs)
