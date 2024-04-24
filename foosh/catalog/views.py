@@ -39,6 +39,7 @@ class NoCategoryRedirectView(LoginRequiredMixin, RedirectView):
 
 
 class ItemDetailView(LoginRequiredMixin, DetailView):
+    login_url = reverse_lazy("users:login")
     template_name = "catalog/item.html"
     context_object_name = "item"
 
