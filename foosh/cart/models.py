@@ -62,11 +62,6 @@ class Order(models.Model):
         related_name="orders",
     )
 
-    items = models.ManyToManyField(
-        Item,
-        verbose_name="товары",
-    )
-
     total_price = models.DecimalField(
         "итого",
         max_digits=10,
@@ -100,10 +95,35 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk:
-            self.total_price = sum(item.price for item in self.items.all())
+            self.total_price = sum(
+                item.price * item.quantity for item in self.items.all()
+            )
 
         super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "заказ"
         verbose_name_plural = "заказы"
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        verbose_name="заказ",
+        related_name="items",
+    )
+
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+        verbose_name="товар",
+    )
+
+    quantity = models.PositiveIntegerField(
+        "количество",
+        default=0,
+    )
+
+    class Meta:
+        unique_together = ("order", "item")

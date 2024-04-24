@@ -14,7 +14,7 @@ from yookassa.domain.notification import (
     WebhookNotificationFactory,
 )
 
-from cart.models import Cart, CartItem, Order, Status
+from cart.models import Cart, CartItem, Order, OrderItem, Status
 from cart.utils import get_client_ip
 from catalog.models import Item
 
@@ -84,8 +84,11 @@ class CheckoutView(LoginRequiredMixin, View):
         order.save()
 
         for i in CartItem.objects.filter(cart=cart):
-            for _ in range(i.quantity):
-                order.items.add(i.item)
+            OrderItem.objects.create(
+                order=order,
+                item=i.item,
+                quantity=i.quantity,
+            )
 
         order.save()
 
