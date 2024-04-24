@@ -33,5 +33,5 @@ for (i = 0; i < buttons.length; i++){
 
 function replace( hide, show ) {
     hide.style.display="none";
-    show.style.display="block";
+    show.style.display="flex";
 };
