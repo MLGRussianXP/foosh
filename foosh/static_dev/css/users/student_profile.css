@@ -84,6 +84,10 @@
     margin-top: 30px;
 }
 
+.order-item {
+    margin-bottom: 60px;
+}
+
 .order-item-info {
     width: 800px;
     height: 104px;
