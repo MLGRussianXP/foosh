@@ -23,12 +23,13 @@
                 <div class="counts-item-content">
                   <h3 class="count-text">количество</h3>
                   <div class="buy-item">
-                    <div class="count-item" id="plus_minus">
-                      <input class="input update-cart" id="plus_minus_button" data-action="remove" data-product="{{ cartitem.item.id }}" type="button" value="-"/>
-                      <input class="input" id="count" type="text" value="{{ cartitem.quantity }}"/>
-                      <input class="input update-cart" id="plus_minus_button" data-action="add" data-product="{{ cartitem.item.id }}" type="button" value="+"/>
+                    <div class="count-item" style="display:none"  data-id_of_count="{{ cartitem.item.id }}.plus_minus_div">
+                      <button class="input update-cart" data-type_of_button="plus_minus" data-id_of_count="{{ cartitem.item.id }}.minus" data-action="remove" data-product="{{ cartitem.item.id }}" type="button" value="-">-</button>
+                      <button class="input" data-id_of_count="{{ cartitem.item.id }}.count" type="text">0</button>
+                      <button class="input update-cart" data-type_of_button="plus_minus" data-id_of_count="{{ cartitem.item.id }}.plus" data-action="add" data-product="{{ cartitem.item.id }}" type="button" value="+">+</button>
                     </div>
-                    <a href="" class="btn-buy update-cart" data-action="add" data-product="{{ cartitem.item.id }}" id="add_to_cart">В корзину</a>
+                    <button class="btn-buy update-cart"  style="display:block" data-type_of_button="add_to_chart" data-id_of_count="{{ cartitem.item.id }}.add" data-action="add" data-product="{{ cartitem.item.id }}">В корзину</button>
+                    </div>
                   </div>
                 </div>
                 <div class="item-icons">
