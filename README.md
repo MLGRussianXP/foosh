@@ -23,7 +23,7 @@ Load cities from fixtures:
 python manage.py cities_light_fixtures load --base-url file:fixtures/cities_light/
 ```
 
-**Setup a test YooKassa shop**. Follow the instruction: https://yookassa.ru/docs/support/merchant/payments/implement/test-store. Then, set the corresponding variables in .env file: `YOOKASSA_SHOP_ID` and `YOOKASSA_API_KEY`. `YOOKASSA_SUCCESS_URL` is going to be `your_domain/cart/success`. Also, add your domain to `DJANGO_ALLOWED_HOSTS`.
+**Setup a test YooKassa shop**. Follow the instruction: https://yookassa.ru/docs/support/merchant/payments/implement/test-store. Then, set the corresponding variables in .env file: `YOOKASSA_SHOP_ID` and `YOOKASSA_API_KEY`. `YOOKASSA_SUCCESS_URL` is going to be `your_domain/auth/profile/menu`. Also, add your domain to `DJANGO_ALLOWED_HOSTS`.
 Check the HTTP notifications tab. Pass the `your_domain/cart/order_update/` to the URL for notifications. Enable only `payment.succeeded` and `payment.canceled`.
 
 **Setup Captcha.**
