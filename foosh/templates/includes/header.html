@@ -3,24 +3,20 @@
 	<div class="header-content">
 		<a href="{% url 'homepage:home' %}"><img src="{% static '/imgs/header/logo.svg' %}" alt="logo" class="logo"></a>
 		<div class="navbar-header">
-			{% if user.is_authenticated %}
-				<a href="{% url 'catalog:category' 1 %}" class="nav-item">Каталог</a>
-			{% else %}
-				<a href="{% url 'users:login' %}" class="nav-item">Каталог</a>
-			{% endif %}
+			<a href="{% url 'catalog:category' 1 %}" class="nav-item">Каталог</a>
 			<a href="{% url 'homepage:home' %}" class="nav-item">О нас</a>
 			<a href="{% url 'homepage:home' %}" class="nav-item">Контакты</a>
 			{% if user.is_authenticated %}
 				<div class="auth-user-header">
 					<a href="{% url 'cart:cart' %}">
-            <img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
+            			<img src="{% static '/imgs/header/cart.svg' %}" alt="cart">
 					</a>
 					<div class="user-info">
 						<a href="{% url 'users:profile' 'menu' %}" class="username">
-              {{ user.email }}
+              				{{ user.email }}
 						</a>
 						<a href="{% url 'users:logout' %}">
-              <img src="{% static '/imgs/header/logout.svg' %}" alt="logout" class="logout">
+              				<img src="{% static '/imgs/header/logout.svg' %}" alt="logout" class="logout">
 						</a>
 					</div>
 				</div>
