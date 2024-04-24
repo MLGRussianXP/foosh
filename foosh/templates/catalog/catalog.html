@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" href="{% static '/css/catalog/catalog.css' %}">
+  <main class="catalog">
+    <div class="catalog-content">
+			<h1 class="catalog-title">Каталог</h1>
+			<div class="choices">
+				<a href="{% url 'catalog:category' 1 %}" class="choice-item">Выпечка</a>
+				<a href="{% url 'catalog:category' 2 %}" class="choice-item">Напитки</a>
+				<a href="{% url 'catalog:category' 3 %}" class="choice-item">Горячее</a>
+				<a href="{% url 'catalog:category' 4 %}" class="choice-item">Комбо</a>
+        </div>
+			{% if items %}
+			<div class="cards">
+				{% for item in items %}
+					{% include "includes/card.html" %}
+				{% endfor %}
+			</div>
+			{% else %}
+				<h1>В данный момент каталог товаров пуст</h1>
+			{% endif %}
+	    </div>
+  </main>
+  <script>
+    var user = '{{request.user}}'
+  </script>
+  <script src="{% static '/js/cart_add_delete.js' %}"></script>
+  <script src="{% static '/js/change_add_to_cart.js' %}"></script>
+{% endblock %}

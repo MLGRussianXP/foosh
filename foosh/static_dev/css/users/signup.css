@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Bellota Text", sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.bg-form {
+    width: 450px;
+    height: 500px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo {
+    width: 76px;
+    height: 29px;
+    margin-top: 19px;
+}
+
+.title {
+    font-size: 27px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.text {
+    font-size: 22px;
+    margin-top: 40px;
+}
+
+.btns {
+    width: 450px;
+    height: 402px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 21px;
+    margin-top: 40px;
+}
+
+.btn {
+    width: 169px;
+    height: 43px;
+    background-color: #FFFFFF;
+    border: 1px solid #6B3D23;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+    transition: .3s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.btn:hover {
+    background-color: #6B3D23;
+    color: #FFFFFF;
+}
+
+.link {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 40px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.non-field-errors {
+    width: 350px;
+    margin-bottom: 10px;
+}
+
+.form-error {
+    color: yellow;
+}

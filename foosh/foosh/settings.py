@@ -2,6 +2,7 @@ from os import getenv
 from pathlib import Path
 
 from dotenv import load_dotenv
+from yookassa import Configuration
 
 
 __all__ = []
@@ -24,11 +25,15 @@ SECRET_KEY = getenv("DJANGO_SECRET_KEY", "not_secret")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = get_bool("DJANGO_DEBUG", "False")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
+
+CSRF_TRUSTED_ORIGINS = getenv(
+    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    "http://127.0.0.1",
+).split(",")
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -36,6 +41,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "homepage.apps.HomepageConfig",
+    "users.apps.UsersConfig",
+    "catalog.apps.CatalogConfig",
+    "cart.apps.CartConfig",
+    "cities_light",
+    "sorl.thumbnail",
+    "django_recaptcha",
 ]
 
 MIDDLEWARE = [
@@ -48,12 +60,17 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+if DEBUG:
+    INSTALLED_APPS.append("debug_toolbar")
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+    INTERNAL_IPS = ["127.0.0.1", "localhost"]
+
 ROOT_URLCONF = "foosh.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -79,22 +96,41 @@ DATABASES = {
     },
 }
 
+AUTH_USER_MODEL = "users.CustomUser"
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ["ru", "en"]
+CITIES_LIGHT_INCLUDE_COUNTRIES = ["RU", "KZ"]
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".UserAttributeSimilarityValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation.MinimumLengthValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "CommonPasswordValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "NumericPasswordValidator"
+        ),
     },
 ]
 
@@ -102,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "UTC"
 
@@ -114,9 +150,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [BASE_DIR / "static_dev"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Captcha
+
+RECAPTCHA_PUBLIC_KEY = getenv("RECAPTCHA_PUBLIC_KEY", "no_key")
+RECAPTCHA_PRIVATE_KEY = getenv("RECAPTCHA_PRIVATE_KEY", "no_key")
+
+# Paymnets
+
+Configuration.configure(
+    getenv("YOOKASSA_SHOP_ID", ""),
+    getenv("YOOKASSA_API_KEY", ""),
+)
+
+YOKASSA_SUCCESS_URL = getenv("YOOKASSA_SUCCESS_URL", "")
