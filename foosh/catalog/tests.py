@@ -75,17 +75,33 @@ class CatalogViewTests(TestCase):
                 },
             ),
         )
+
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(
             response.context["items"],
             [self.item1],
         )
 
+    def test_item_detail_view(self):
+        self.client.force_login(self.user)
+        response = self.client.get(
+            reverse(
+                "catalog:item",
+                kwargs={
+                    "pk": self.item1.pk,
+                },
+            ),
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["item"], self.item1)
+
     def test_no_category_redirect_view(self):
         self.client.force_login(self.user)
         response = self.client.get(
             reverse("catalog:redirect"),
         )
+
         self.assertRedirects(
             response,
             reverse(
@@ -94,4 +110,28 @@ class CatalogViewTests(TestCase):
                     "category": Category.BAKERY,
                 },
             ),
+        )
+
+    def test_redirect_to_login_view(self):
+        self.client.logout()
+        response = self.client.get(
+            reverse(
+                "catalog:category",
+                kwargs={
+                    "category": Category.BAKERY,
+                },
+            ),
+        )
+
+        expected_url = reverse("users:login")
+        expected_url += "?next=" + reverse(
+            "catalog:category",
+            kwargs={
+                "category": Category.BAKERY,
+            },
+        )
+
+        self.assertRedirects(
+            response,
+            expected_url,
         )

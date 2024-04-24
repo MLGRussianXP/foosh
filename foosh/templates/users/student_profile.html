@@ -1,27 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <link rel="stylesheet" href="{% static '/css/users/student_profile.css' %}">
-    <main class="student-profile">
-        <h1 class="student-profile-title">Личный кабинет</h1>
-        <div class="student-info">
-            <div class="student-main-info">
-                <h1 class="student-name">{{ user.student.surname }} {{ user.student.name }} {{ user.student.patronymic }}</h1>
-                <p class="student-field"><b>Учебное заведение:</b> {{ user.student.school.name }}</p>
-                <p class="student-field"><b>Город:</b> {{ user.student.city.name }}</p>
-                <p class="student-field"><b>Почта:</b> {{ user.email }}<p>
-                <div class="btns-edit">
-                    <a href="" class="btn-edit btn-edit-profile">Редактировать профиль</a>
-                    <a href="{% url 'users:password_change' %}" class="btn-edit btn-edit-password">Изменить пароль</a>
-                </div>
-            </div>
-            <div class="student-orders">
-                <h1>Заказы</h1>
-                <div class="student-order">
-                    {% include "includes/users/orders.html" %}
-                </div>
-            </div>
+  <link rel="stylesheet" href="{% static '/css/users/student_profile.css' %}">
+  <main class="student-profile">
+    <h1 class="student-profile-title">Личный кабинет</h1>
+    <div class="student-info">
+      <div class="student-main-info">
+        <h1 class="student-name">{{ user.student.surname }} {{ user.student.name }} {{ user.student.patronymic }}</h1>
+        <p class="student-field"><b>Учебное заведение:</b> {{ user.student.school.name }}</p>
+        <p class="student-field"><b>Город:</b> {{ user.student.city.name }}</p>
+        <p class="student-field"><b>Почта:</b> {{ user.email }}<p>
+        <div class="btns-edit">
+          <a href="" class="btn-edit btn-edit-profile">Редактировать профиль</a>
+          <a href="{% url 'users:password_change' %}" class="btn-edit btn-edit-password">Изменить пароль</a>
         </div>
-    </main>
-    <script src="{% static '/js/school_profile_orders.js' %}"></script>
+      </div>
+      <div class="student-orders">
+        <h1>Заказы</h1>
+        <div class="student-order">
+          {% include "includes/users/orders.html" %}
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="{% static '/js/school_profile_orders.js' %}"></script>
 {% endblock %}

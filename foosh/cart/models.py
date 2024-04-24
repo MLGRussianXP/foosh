@@ -32,12 +32,12 @@ class CartItem(models.Model):
     )
 
     quantity = models.IntegerField(
+        "количество",
         default=0,
-        verbose_name="количество",
     )
 
     def __str__(self):
-        return self.product.name.field.name
+        return f"{self.item.name} (x{self.quantity})"
 
 
 class Status(models.IntegerChoices):
@@ -60,11 +60,6 @@ class Order(models.Model):
         on_delete=models.CASCADE,
         verbose_name="школа",
         related_name="orders",
-    )
-
-    items = models.ManyToManyField(
-        Item,
-        verbose_name="товары",
     )
 
     total_price = models.DecimalField(
@@ -100,10 +95,35 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk:
-            self.total_price = sum(item.price for item in self.items.all())
+            self.total_price = sum(
+                item.price * item.quantity for item in self.items.all()
+            )
 
         super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "заказ"
         verbose_name_plural = "заказы"
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        verbose_name="заказ",
+        related_name="items",
+    )
+
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+        verbose_name="товар",
+    )
+
+    quantity = models.PositiveIntegerField(
+        "количество",
+        default=0,
+    )
+
+    class Meta:
+        unique_together = ("order", "item")
