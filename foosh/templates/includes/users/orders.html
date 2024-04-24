@@ -3,10 +3,10 @@
 	<div class="order-item">
 		<div class="order-item-info">
 			<div class="order-item-main-info">
-					<p class="num-order">Заказ №{{ order.id }}</p>
-					<img src="{% static '/imgs/users/icon_clock.png' %}" alt="clock" class="clock">
-					<p class="date-text">{{ order.created_at }}</p>
-					<p class="count-order"><b>Всего:</b> {{ order.items.count }} товара(ов)</p>
+        <p class="num-order">Заказ №{{ order.id }}</p>
+        <img src="{% static '/imgs/users/icon_clock.png' %}" alt="clock" class="clock">
+        <p class="date-text">{{ order.created_at }}</p>
+        <p class="count-order"><b>Всего:</b> {{ order.items.count }} товара(ов)</p>
 			</div>
 			<div class="price-order"><b>Итого: </b> {{ order.total_price }}₽</div>
 		</div>
@@ -20,10 +20,8 @@
 					<p class="item-price">{{ item.price }} X 10шт = 1000₽</p>
 				</div>
 			</div>
-		{% endfor %}
-		</div>
-		{% empty %}
-		<h1 class="no-order">
-				В данный момент заказов нет
-		</h1>
+    {% endfor %}
+  </div>
+  {% empty %}
+    <h1 class="no-order">В данный момент заказов нет</h1>
 {% endfor %}

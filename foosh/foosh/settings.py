@@ -165,8 +165,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Captcha
 
-RECAPTCHA_PUBLIC_KEY = getenv("DJANGO_RECAPTCHA_PUBLIC_KEY", "not_secret")
-RECAPTCHA_PRIVATE_KEY = getenv("DJANGO_RECAPTCHA_PRIVATE_KEY", "not_secret")
+RECAPTCHA_PUBLIC_KEY = getenv("RECAPTCHA_PUBLIC_KEY", "no_key")
+RECAPTCHA_PRIVATE_KEY = getenv("RECAPTCHA_PRIVATE_KEY", "no_key")
 
 # Paymnets
 

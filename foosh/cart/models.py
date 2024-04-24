@@ -32,12 +32,12 @@ class CartItem(models.Model):
     )
 
     quantity = models.IntegerField(
+        "количество",
         default=0,
-        verbose_name="количество",
     )
 
     def __str__(self):
-        return self.product.name.field.name
+        return f"{self.item.name} (x{self.quantity})"
 
 
 class Status(models.IntegerChoices):

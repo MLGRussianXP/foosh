@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-__all__ = ()
+__all__ = []
 
 
 class CartConfig(AppConfig):

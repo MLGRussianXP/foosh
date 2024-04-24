@@ -6,7 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 from yookassa import Payment
 from yookassa.domain.common import SecurityHelper
 from yookassa.domain.notification import (
@@ -22,18 +22,19 @@ from catalog.models import Item
 __all__ = []
 
 
-class CartView(LoginRequiredMixin, TemplateView):
+class CartView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy("users:login")
     template_name = "cart/cart.html"
+    context_object_name = "cartitems"
+    model = CartItem
+
+    def get_queryset(self):
+        cart, _ = Cart.objects.get_or_create(user=self.request.user)
+        return self.model.objects.filter(cart=cart)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        cart, created = Cart.objects.get_or_create(
-            user=self.request.user,
-        )
-        context["cartitems"] = CartItem.objects.filter(cart=cart)
         context["title"] = "FOOSH"
-
         return context
 
 
