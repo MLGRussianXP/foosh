@@ -15,23 +15,22 @@
 				<p class="category">{{ item.get_category_display }}</p>
 				<div class="rating">
 					<div class="stars">
-						<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-						<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-						<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-						<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-						<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+						<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+						<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+						<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+						<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+						<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
 					</div>
 						<p class="count-feedback">635</p>
 					</div>
 					<p class="price">{{ item.price }}₽</p>
 					<div class="buy-item">
-						<div class="count-item" id="plus_minus">
-							<input class="input update-cart" id="plus_minus_button" data-action="remove" data-product="{{item.id}}" type="button" value="-"/>
-							<input class="input" id="count" type="text" value="1"/>
-							<input class="input update-cart" id="plus_minus_button" data-action="add" data-product="{{item.id}}" type="button" value="+"/>
+						<div class="count-item" style="display:none" data-id_of_count="{{ item.id }}.plus_minus_div">
+							<button class="input update-cart" data-type_of_button="plus_minus" data-id_of_count="{{ item.id }}.minus" data-action="remove" data-product="{{ item.id }}" type="button" value="-">-</button>
+							<button class="input" data-id_of_count="{{ item.id }}.count" type="text">0</button>
+							<button class="input update-cart" data-type_of_button="plus_minus" data-id_of_count="{{ item.id }}.plus" data-action="add" data-product="{{ item.id }}" type="button" value="+">+</button>
 						</div>
-						<a href="" class="btn-buy" data-action="add" data-product="{{item.id}}" id="add_to_cart">В корзину</a>
-						<a href="" class="add-feedback">Оставить отзыв</a>
+						<button class="btn-buy update-cart" style="display:block" data-type_of_button="add_to_chart" data-id_of_count="{{ item.id }}.add" data-action="add" data-product="{{ item.id }}">В корзину</button>
 					</div>
 					<div class="feedbacks">
 						<p class="feedback-title">Отзывы</p>
@@ -40,11 +39,11 @@
 								<div class="user-ino">
 									<p class="feedback-username">Сергей</p>
 									<div class="user-rating">
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
 									</div>
 									<p class="user-feedback-text">Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.</p>
 								</div>
@@ -53,11 +52,11 @@
 								<div class="user-ino">
 									<p class="feedback-username">Сергей</p>
 									<div class="user-rating">
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
 									</div>
 									<p class="user-feedback-text">Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.</p>
 								</div>
@@ -66,11 +65,12 @@
 								<div class="user-ino">
 									<p class="feedback-username">Сергей</p>
 									<div class="user-rating">
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
-										<svg id="star1" class="star" onclick="rate('star', 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M12 2 l2.76 8.45H22L15.63 15.38l2.8 8.45-7.37-5.63L5.8 24l2.8-8.45L2 10.45h7.24z"/></svg>
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+										<img src="{% static '/imgs/catalog/star.svg' %}" class="star">
+									</div>
 								</div>
 								<p class="user-feedback-text">Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.Булочки обладают приятным ароматом и нежным вкусом.</p>
 							</div>
