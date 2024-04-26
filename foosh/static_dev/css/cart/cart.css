@@ -37,6 +37,11 @@
     padding: 11px;
 }
 
+.item-img {
+    width: 369px;
+    height: 215px;
+}
+
 .item-info {
     width: 433px;
     height: 147px;
