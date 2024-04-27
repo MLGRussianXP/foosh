@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView
 
@@ -27,6 +28,15 @@ class ItemListView(LoginRequiredMixin, ListView):
 
         return context
 
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_school:
+            return redirect("users:profile", "menu")
+
+        if self.request.user.is_superuser:
+            return redirect("users:signup")
+
+        return super().get(request, *args, **kwargs)
+
 
 class NoCategoryRedirectView(LoginRequiredMixin, RedirectView):
     login_url = reverse_lazy("users:login")
@@ -45,10 +55,23 @@ class ItemDetailView(LoginRequiredMixin, DetailView):
 
     def get_object(self):
         pk = self.kwargs["pk"]
-        return catalog.models.Item.objects.filter(id=pk).first()
+        return get_object_or_404(
+            catalog.models.Item,
+            pk=pk,
+            school=self.request.user.student.school,
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Каталог"
 
         return context
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_school:
+            return redirect("users:profile", "menu")
+
+        if self.request.user.is_superuser:
+            return redirect("users:signup")
+
+        return super().get(request, *args, **kwargs)
