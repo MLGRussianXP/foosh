@@ -1,0 +1,49 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: pip install -r requirements/test.txt
+      - name: Run flake8
+        run: |
+          pip install flake8
+          flake8 --verbose foosh
+
+  black:
+    name: Black Formatting Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: pip install -r requirements/test.txt
+      - name: Run Black check
+        run: |
+          pip install black
+          black --config pyproject.toml --check foosh
+
+  test:
+    name: Django Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: pip install -r requirements/test.txt
+      - name: Run Django tests
+        run: |
+          cd foosh
+          python manage.py test
